@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>2.5-Zimmer-Wohnung mit Balkon – Baslerstrasse 35, Zürich</title>
+<meta name="description" content="2.5 Zimmer, 63 m², Balkon, 6. Stock mit Lift. CHF 1'750 brutto. Nachmieter per 31. Oktober 2026 gesucht.">
+<meta property="og:title" content="2.5-Zimmer-Wohnung mit Balkon, Baslerstrasse 35, Zürich">
+<meta property="og:description" content="CHF 1'750 brutto, frei per 31. Oktober 2026. Online bewerben.">
+<meta property="og:image" content="foto-wohnen-essen.jpg">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏡</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20272B; --ink-2:#4A555C; --line:#E2DED6;
+  --paper:#FBFAF7; --oak:#C98B4B; --oak-soft:#F3E4CF; --slate:#5E6E78; --leaf:#5F7D4E;
+  --err:#B3261E; --ok:#2E6B3A;
+  --radius:14px;
+  --display:"Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body:"Figtree", "Segoe UI", system-ui, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth; scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--oak);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--display);line-height:1.05;margin:0;letter-spacing:-.02em}
+h2{font-size:clamp(28px,4.5vw,40px);font-weight:700;margin-bottom:18px}
+h3{font-size:20px;font-weight:700}
+section{padding:56px 0}
+.lead{font-size:19px;color:var(--ink-2);max-width:62ch}
+
+/* Hero */
+.hero{position:relative}
+.hero img{width:100%;height:min(72vh,640px);object-fit:cover}
+.hero-card{position:relative;margin:-90px auto 0;max-width:1040px;background:var(--paper);border-radius:22px 22px 0 0;padding:28px 20px 0}
+.hero h1{font-size:clamp(40px,8vw,84px);font-weight:800}
+.hero .sub{font-family:var(--display);font-size:clamp(20px,3vw,28px);font-weight:500;color:var(--ink-2);margin-top:8px}
+.hero .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.badge{background:var(--oak-soft);color:#6B4418;border-radius:999px;padding:6px 14px;font-weight:600;font-size:15px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--ink);color:#fff;border:0;border-radius:999px;padding:15px 26px;font:600 17px/1 var(--body);text-decoration:none;cursor:pointer;transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn[disabled]{opacity:.6;cursor:wait;transform:none}
+.hero .btn{margin-top:26px}
+
+/* Facts */
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--line);margin-top:8px}
+.facts div{padding:16px 4px;border-bottom:1px solid var(--line)}
+.facts dt{font-size:14px;color:var(--ink-2)}
+.facts dd{margin:2px 0 0;font-family:var(--display);font-size:22px;font-weight:700}
+.facts .big dd{font-size:26px}
+@media(min-width:760px){.facts .big dd{font-size:30px}}
+@media(min-width:760px){.facts{grid-template-columns:repeat(4,1fr)}.facts div{padding:20px 8px}}
+.two{display:grid;gap:36px}
+@media(min-width:860px){.two{grid-template-columns:1.1fr .9fr;align-items:start}}
+.plain-list{margin:18px 0 0;padding:0;list-style:none}
+.plain-list li{padding:10px 0;border-bottom:1px solid var(--line)}
+
+/* Gallery */
+.gallery{display:grid;grid-auto-flow:column;grid-auto-columns:82%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:20px;padding:0 20px 8px;margin:0 -20px;scrollbar-width:thin}
+.gallery button{padding:0;border:0;background:none;cursor:zoom-in;scroll-snap-align:start;border-radius:var(--radius);overflow:hidden}
+.gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .3s}
+.gallery button:hover img{transform:scale(1.03)}
+.gallery figcaption{font-size:14px;color:var(--ink-2);text-align:left;padding:6px 2px}
+@media(min-width:760px){
+  .gallery{grid-auto-flow:row;grid-template-columns:repeat(6,1fr);grid-auto-columns:auto;overflow:visible;margin:0;padding:0}
+  .gallery figure{grid-column:span 2}
+  .gallery figure:nth-child(1),.gallery figure:nth-child(2){grid-column:span 3}
+}
+.gallery figure{margin:0}
+dialog.lb{border:0;padding:0;background:rgba(15,18,20,.94);max-width:100vw;max-height:100vh;width:100vw;height:100vh;color:#fff}
+dialog.lb::backdrop{background:rgba(15,18,20,.94)}
+.lb-inner{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:env(safe-area-inset-top,0px) 12px env(safe-area-inset-bottom,0px)}
+.lb img{max-height:82vh;max-width:100%;object-fit:contain;border-radius:8px}
+.lb-cap{margin-top:12px;font-size:15px;opacity:.85}
+.lb-ctrl{position:fixed;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.14);border:0;color:#fff;width:48px;height:48px;border-radius:50%;font-size:26px;cursor:pointer}
+.lb-prev{left:12px}.lb-next{right:12px}
+.lb-close{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right:14px;background:rgba(255,255,255,.14);border:0;color:#fff;border-radius:999px;padding:10px 16px;font:600 15px var(--body);cursor:pointer}
+
+/* Plan */
+.plan-box{background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px;max-width:480px}
+.plan-box svg{width:100%;height:auto;display:block}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;font-size:14px;color:var(--ink-2)}
+.legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+
+/* Einrichtung */
+.furn{background:var(--ink);color:#fff;border-radius:26px;padding:34px 24px}
+.furn h2{color:#fff}
+.furn .price{font-family:var(--display);font-size:clamp(46px,9vw,88px);font-weight:800;line-height:1;color:#F0C48F;margin:6px 0 4px}
+.furn p{color:#D5DADD}
+.furn ul{columns:2;column-gap:28px;padding:0;margin:22px 0;list-style:none}
+.furn li{break-inside:avoid;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+.furn .thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.furn .thumbs img{aspect-ratio:1;object-fit:cover;border-radius:10px}
+.furn .note{font-size:15px;color:#AEB7BC;border-left:3px solid #F0C48F;padding-left:14px;margin-top:20px}
+@media(min-width:860px){.furn{padding:48px}.furn-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}.furn ul{columns:1}}
+
+/* Ablauf */
+.steps{list-style:none;padding:0;margin:0;display:grid;gap:18px;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:48px 1fr;gap:14px;align-items:start}
+.steps li::before{content:counter(s);width:44px;height:44px;border-radius:50%;background:var(--oak-soft);color:#6B4418;font:800 20px/44px var(--display);text-align:center}
+@media(min-width:860px){.steps{grid-template-columns:repeat(3,1fr)}}
+
+/* Formular */
+.form-section{background:#F2EFE9}
+form{max-width:760px}
+fieldset{border:0;padding:0;margin:0 0 36px}
+legend{font-family:var(--display);font-size:24px;font-weight:700;margin-bottom:6px;padding:0}
+.hint{font-size:15px;color:var(--ink-2);margin:0 0 16px}
+.grid{display:grid;gap:14px}
+@media(min-width:620px){.grid.c2{grid-template-columns:1fr 1fr}.grid.c3{grid-template-columns:1fr 1fr 1fr}}
+label.f{display:block;font-weight:600;font-size:15px}
+label.f .opt{font-weight:400;color:var(--ink-2)}
+input[type=text],input[type=email],input[type=tel],input[type=date],input[type=number],select,textarea{
+  width:100%;margin-top:6px;padding:13px 14px;border:1.5px solid #CFC9BE;border-radius:10px;background:#fff;font:400 17px var(--body);color:var(--ink);appearance:none}
+select{background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2320272B' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 14px center}
+textarea{min-height:110px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:none;box-shadow:0 0 0 3px rgba(201,139,75,.35)}
+.choice{display:grid;gap:10px}
+.choice label{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1.5px solid #CFC9BE;border-radius:12px;padding:14px 16px;cursor:pointer;font-weight:500}
+.choice label:has(input:checked){border-color:var(--ink);box-shadow:0 0 0 2px var(--ink) inset}
+.choice input{margin-top:4px;width:18px;height:18px;accent-color:var(--ink);flex:none}
+.choice small{display:block;color:var(--ink-2);font-weight:400}
+.upload{background:#fff;border:1.5px dashed #BDB6A9;border-radius:12px;padding:14px 16px}
+.upload input{margin-top:8px;font:15px var(--body);max-width:100%}
+.upload .files{font-size:14px;color:var(--ink-2);margin-top:6px}
+.check{display:flex;gap:12px;align-items:flex-start;font-size:15px}
+.check input{width:20px;height:20px;margin-top:2px;accent-color:var(--ink);flex:none}
+.err-msg{color:var(--err);font-size:14px;margin-top:4px;display:none}
+.invalid .err-msg{display:block}
+.invalid input,.invalid select{border-color:var(--err)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.submit-row{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.status{font-size:15px}
+.status.error{color:var(--err)}
+.done{display:none;background:#fff;border-radius:22px;padding:34px 26px;max-width:760px;border:2px solid var(--ok)}
+.done h2{color:var(--ok)}
+.ref{font-family:var(--display);font-size:26px;font-weight:700;letter-spacing:.04em}
+
+footer{padding:40px 0 110px;font-size:14px;color:var(--ink-2)}
+footer p{max-width:70ch}
+
+/* Sticky CTA mobil */
+.sticky{position:fixed;left:0;right:0;bottom:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:linear-gradient(transparent,rgba(251,250,247,.96) 30%);display:flex;justify-content:center;transition:transform .25s;z-index:10}
+.sticky .btn{width:100%;max-width:420px;box-shadow:0 8px 24px rgba(32,39,43,.25)}
+.sticky.hide{transform:translateY(120%)}
+@media(min-width:860px){.sticky{display:none}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img src="foto-wohnen-essen.jpg" alt="Offener Wohn- und Essbereich mit Parkett" fetchpriority="high">
+  <div class="hero-card">
+    <h1>Baslerstrasse 35</h1>
+    <p class="sub">2.5 Zimmer mit Balkon im 6. Stock, 8048 Zürich</p>
+    <div class="badges">
+      <span class="badge">Frei per 31. Oktober 2026</span>
+      <span class="badge">CHF 1'750 brutto</span>
+      <span class="badge">Lift</span>
+      <span class="badge">Parkplatz verfügbar</span>
+    </div>
+    <a class="btn" href="#bewerben">Jetzt online bewerben</a>
+  </div>
+</header>
+
+<main>
+<section id="eckdaten">
+  <div class="wrap">
+    <dl class="facts">
+      <div class="big"><dt>Mietzins brutto</dt><dd>CHF 1'750</dd></div>
+      <div><dt>Netto + Nebenkosten</dt><dd>1'504 + 246</dd></div>
+      <div><dt>Zimmer</dt><dd>2.5</dd></div>
+      <div><dt>Wohnfläche</dt><dd>63 m²</dd></div>
+      <div><dt>Balkon, gedeckt</dt><dd>ca. 13 m²</dd></div>
+      <div><dt>Stockwerk</dt><dd>6. OG mit Lift</dd></div>
+      <div><dt>Bezug</dt><dd>31.10.2026</dd></div>
+      <div><dt>Aussenparkplatz</dt><dd>CHF 80 / Mt.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="wohnung" style="padding-top:8px">
+  <div class="wrap two">
+    <div>
+      <h2>Hell im 6. Stock, mitten im Kreis 9</h2>
+      <p class="lead">Die Wohnung hat einen offenen Wohn- und Essbereich mit Eichenparkett und einen gedeckten Balkon über die ganze Breite, mit Sonnenstore und Blick über Zürich West. Wohnzimmer und Schlafzimmer haben beide direkten Zugang zum Balkon.</p>
+      <ul class="plain-list">
+        <li>Küche mit Geschirrspüler, Glaskeramik-Kochfeld, Backofen und viel Stauraum</li>
+        <li>Bad mit Badewanne</li>
+        <li>Parkett in Wohn-, Ess- und Schlafzimmer</li>
+        <li>Letzipark gleich um die Ecke, Stadion Letzigrund in der Nähe</li>
+        <li>Sehr gute ÖV-Anbindung</li>
+        <li>Aussenparkplatz für CHF 80 pro Monat verfügbar</li>
+      </ul>
+    </div>
+    <figure style="margin:0">
+      <img src="foto-balkon-aussicht.jpg" alt="Gedeckter Balkon mit Lounge und Aussicht" loading="lazy" style="border-radius:22px;aspect-ratio:4/5;object-fit:cover;width:100%">
+    </figure>
+  </div>
+</section>
+
+<section id="bilder" style="padding-top:0">
+  <div class="wrap">
+    <h2>Bilder</h2>
+    <div class="gallery" id="gallery"></div>
+  </div>
+</section>
+
+<dialog class="lb" id="lb" aria-label="Bildansicht">
+  <div class="lb-inner">
+    <img id="lb-img" alt="">
+    <p class="lb-cap" id="lb-cap"></p>
+  </div>
+  <button class="lb-ctrl lb-prev" id="lb-prev" aria-label="Vorheriges Bild">‹</button>
+  <button class="lb-ctrl lb-next" id="lb-next" aria-label="Nächstes Bild">›</button>
+  <button class="lb-close" id="lb-close">Schliessen</button>
+</dialog>
+
+<section id="grundriss" style="padding-top:0">
+  <div class="wrap two">
+    <div>
+      <h2>Grundriss</h2>
+      <p class="lead">Wohnen und Essen sind ein durchgehender Raum. Die Küche ist zum Essbereich offen, Bad und Schlafzimmer liegen abgetrennt.</p>
+      <div class="legend">
+        <span style="--c:#EBCB9E">Parkett</span>
+        <span style="--c:#DDE2E5">Plattenboden</span>
+        <span style="--c:#F4F2EE;outline:0">Fliesen</span>
+        <span style="--c:#D8A36B">Holzplatten Balkon</span>
+      </div>
+    </div>
+    <div class="plan-box">
+      <svg aria-hidden="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 860" role="img" aria-labelledby="gr-t gr-d" font-family="Figtree, system-ui, sans-serif">
+  <title id="gr-t">Grundriss 2.5-Zimmer-Wohnung, Baslerstrasse 35</title>
+  <desc id="gr-d">Balkon über die ganze Breite. Darunter links Wohnen, offen zum Essbereich; rechts Zimmer, Bad und Küche. Eingang unten zwischen Essbereich und Küche.</desc>
+  <defs>
+    <pattern id="parkett" width="24" height="24" patternUnits="userSpaceOnUse">
+      <rect width="24" height="24" fill="#EBCB9E"/>
+      <path d="M0 3h12M0 6h12M0 9h12M12 15h12M12 18h12M12 21h12M15 0v12M18 0v12M21 0v12M3 12v12M6 12v12M9 12v12" stroke="#D9AF78" stroke-width="0.7"/>
+      <path d="M0 12h24M12 0v24M0 0h24M0 0v24" stroke="#C99A5E" stroke-width="0.7"/>
+    </pattern>
+    <pattern id="platten" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect width="20" height="20" fill="#DDE2E5"/>
+      <path d="M20 0v20M0 20h20" stroke="#C3CBD0" stroke-width="0.8"/>
+    </pattern>
+    <pattern id="fliesen" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#F4F2EE"/>
+      <path d="M10 0v10M0 10h10" stroke="#DCD7CF" stroke-width="0.6"/>
+    </pattern>
+    <pattern id="deck" width="30" height="30" patternUnits="userSpaceOnUse">
+      <rect width="30" height="30" fill="#D8A36B"/>
+      <path d="M0 5h15M0 10h15M15 20h15M15 25h15M20 0v15M25 0v15M5 15v15M10 15v15" stroke="#B9824A" stroke-width="0.8"/>
+      <path d="M0 15h30M15 0v30M0 0h30M0 0v30" stroke="#9C6A38" stroke-width="0.9"/>
+    </pattern>
+  </defs>
+
+  <!-- Balkon -->
+  <rect x="40" y="40" width="440" height="100" fill="url(#deck)"/>
+  <line x1="30" y1="40" x2="490" y2="40" stroke="#2A3237" stroke-width="3"/>
+  <line x1="40" y1="44" x2="480" y2="44" stroke="#2A3237" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="36" y="40" width="8" height="100" fill="#2A3237"/>
+  <rect x="251" y="46" width="8" height="22" fill="#2A3237"/>
+  <rect x="476" y="40" width="8" height="100" fill="#2A3237"/>
+
+  <!-- Räume -->
+  <rect x="40" y="140" width="215" height="650" fill="url(#parkett)"/>
+  <rect x="255" y="140" width="225" height="300" fill="url(#parkett)"/>
+  <rect x="255" y="440" width="225" height="150" fill="url(#fliesen)"/>
+  <rect x="255" y="590" width="225" height="200" fill="url(#platten)"/>
+
+  <!-- Einbauten Küche -->
+  <rect x="452" y="596" width="24" height="190" fill="#9AA6AD" stroke="#2A3237" stroke-width="1"/>
+  <rect x="455" y="640" width="18" height="28" rx="3" fill="#fff" stroke="#2A3237" stroke-width="0.8"/>
+  <circle cx="464" cy="720" r="5" fill="none" stroke="#2A3237" stroke-width="0.8"/>
+  <circle cx="464" cy="738" r="5" fill="none" stroke="#2A3237" stroke-width="0.8"/>
+  <rect x="262" y="596" width="36" height="36" fill="#9AA6AD" stroke="#2A3237" stroke-width="1"/>
+  <path d="M262 596l36 36M298 596l-36 36" stroke="#2A3237" stroke-width="0.8"/>
+  <!-- Bad -->
+  <rect x="404" y="452" width="42" height="112" rx="10" fill="#fff" stroke="#2A3237" stroke-width="1.2"/>
+  <rect x="410" y="460" width="30" height="96" rx="8" fill="none" stroke="#2A3237" stroke-width="0.8"/>
+  <ellipse cx="316" cy="570" rx="11" ry="14" fill="#fff" stroke="#2A3237" stroke-width="1.2"/>
+  <path d="M346 584h32v-12a16 10 0 0 0 -32 0z" fill="#fff" stroke="#2A3237" stroke-width="1.2"/>
+  <line x1="454" y1="446" x2="454" y2="586" stroke="#2A3237" stroke-width="1"/>
+
+  <!-- Aussenwände -->
+  <g stroke="#2A3237" stroke-width="8" stroke-linecap="square" fill="none">
+    <line x1="40" y1="140" x2="40" y2="790"/>
+    <line x1="480" y1="140" x2="480" y2="790"/>
+    <line x1="40" y1="790" x2="270" y2="790"/>
+    <line x1="330" y1="790" x2="480" y2="790"/>
+  </g>
+  <!-- Fassade zum Balkon (Fenster/Türen) -->
+  <g stroke="#2A3237">
+    <line x1="40" y1="140" x2="480" y2="140" stroke-width="3"/>
+    <line x1="40" y1="137" x2="480" y2="137" stroke-width="1"/>
+  </g>
+  <!-- Innenwände -->
+  <g stroke="#2A3237" stroke-width="5" stroke-linecap="square" fill="none">
+    <line x1="255" y1="140" x2="255" y2="345"/>
+    <line x1="255" y1="395" x2="255" y2="465"/>
+    <line x1="255" y1="515" x2="255" y2="630"/>
+    <line x1="255" y1="440" x2="480" y2="440"/>
+    <line x1="255" y1="590" x2="480" y2="590"/>
+    <line x1="40" y1="596" x2="172" y2="596"/>
+  </g>
+  <line x1="255" y1="632" x2="255" y2="786" stroke="#2A3237" stroke-width="1.2" stroke-dasharray="5 5"/>
+  <!-- Fenster unten -->
+  <g stroke="#fff" stroke-width="4"><line x1="70" y1="790" x2="150" y2="790"/><line x1="170" y1="790" x2="240" y2="790"/><line x1="350" y1="790" x2="445" y2="790"/></g>
+  <g stroke="#2A3237" stroke-width="1"><line x1="70" y1="790" x2="150" y2="790"/><line x1="170" y1="790" x2="240" y2="790"/><line x1="350" y1="790" x2="445" y2="790"/></g>
+
+  <!-- Türen -->
+  <g fill="none" stroke="#2A3237" stroke-width="1.2">
+    <path d="M190 140v44M190 184a44 44 0 0 0 44 -44" stroke-dasharray="0"/>
+    <path d="M320 140v44M320 184a44 44 0 0 1 -44 -44"/>
+    <path d="M255 345h46M301 345a46 46 0 0 1 -46 46"/>
+    <path d="M255 465h46M301 465a46 46 0 0 1 -46 46" transform="translate(0 0)"/>
+    <path d="M275 790v-52M275 738a52 52 0 0 1 52 52"/>
+  </g>
+  <g fill="#2A3237"><rect x="186" y="136" width="4" height="8"/><rect x="316" y="136" width="4" height="8"/></g>
+
+  <!-- Eingang -->
+  <path d="M300 842l-9 -14h18z" fill="#2A3237"/>
+  <text x="300" y="822" text-anchor="middle" font-size="12" fill="#2A3237" font-weight="600">Eingang</text>
+
+  <!-- Beschriftung -->
+  <g font-size="15" font-weight="700" fill="#20272B" text-anchor="middle">
+    <g><rect x="200" y="72" width="120" height="40" rx="8" fill="#FBFAF7" opacity=".92"/><text x="260" y="90">Balkon</text><text x="260" y="106" font-size="12" font-weight="500">13.7 m²</text></g>
+    <g><rect x="92" y="340" width="110" height="40" rx="8" fill="#FBFAF7" opacity=".92"/><text x="147" y="358">Wohnen</text><text x="147" y="374" font-size="12" font-weight="500">23.1 m²</text></g>
+    <g><rect x="312" y="262" width="110" height="40" rx="8" fill="#FBFAF7" opacity=".92"/><text x="367" y="280">Schlafen</text><text x="367" y="296" font-size="12" font-weight="500">14.6 m²</text></g>
+    <g><rect x="92" y="672" width="110" height="40" rx="8" fill="#FBFAF7" opacity=".92"/><text x="147" y="690">Essen</text><text x="147" y="706" font-size="12" font-weight="500">16.2 m²</text></g>
+    <g><rect x="312" y="668" width="110" height="40" rx="8" fill="#FBFAF7" opacity=".92"/><text x="367" y="686">Küche</text><text x="367" y="702" font-size="12" font-weight="500">7.2 m²</text></g>
+    <g><rect x="310" y="492" width="80" height="40" rx="8" fill="#FBFAF7" opacity=".92"/><text x="350" y="510">Bad</text><text x="350" y="526" font-size="12" font-weight="500">5.6 m²</text></g>
+  </g>
+</svg>
+
+    </div>
+  </div>
+</section>
+
+<section id="einrichtung" style="padding-top:0">
+  <div class="wrap">
+    <div class="furn furn-grid">
+      <div>
+        <h2>Die ganze Einrichtung kann bleiben</h2>
+        <p>Wer möchte, kann die komplette Einrichtung übernehmen und direkt einziehen, ohne Umzugswagen.</p>
+        <div class="price">CHF 5'000</div>
+        <p style="margin:0">für alles zusammen</p>
+        <ul>
+          <li>Ecksofa</li>
+          <li>Salontisch</li>
+          <li>TV-Sideboard</li>
+          <li>Boxspringbett 180 × 200 cm</li>
+          <li>2 Nachttische</li>
+          <li>Kleiderschrank mit Spiegeltür</li>
+          <li>Esstisch mit 4 Stühlen</li>
+          <li>2 Regale</li>
+          <li>Bürotisch</li>
+          <li>Schuhschrank</li>
+          <li>Holzplatten auf dem Balkon</li>
+          <li>Ecklounge auf dem Balkon</li>
+        </ul>
+      </div>
+      <div>
+        <div class="thumbs">
+          <img src="foto-wohnzimmer.jpg" alt="Ecksofa, Salontisch und TV-Sideboard" loading="lazy">
+          <img src="foto-schlafzimmer-schrank.jpg" alt="Boxspringbett und Kleiderschrank" loading="lazy">
+          <img src="foto-essbereich.jpg" alt="Esstisch mit Stühlen und Regal" loading="lazy">
+          <img src="foto-balkon.jpg" alt="Balkon mit Holzplatten" loading="lazy">
+          <img src="foto-arbeitsplatz.jpg" alt="Bürotisch und Schuhschrank" loading="lazy">
+          <img src="foto-sideboard.jpg" alt="TV-Sideboard" loading="lazy">
+        </div>
+        <p class="note">Die Übernahme ist ein separates Angebot zwischen Ihnen und mir und nicht Teil des Mietvertrags. Sie ist freiwillig und keine Bedingung für die Weiterleitung Ihrer Bewerbung.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ablauf" style="padding-top:0">
+  <div class="wrap">
+    <h2>So läuft es ab</h2>
+    <ol class="steps">
+      <li><div><h3>Online bewerben</h3><p>Füllen Sie das Formular unten aus und laden Sie Ihre Unterlagen hoch. Das dauert etwa 5 Minuten.</p></div></li>
+      <li><div><h3>Ich prüfe die Dossiers</h3><p>Vollständige Bewerbungen leite ich an die Verwaltung weiter.</p></div></li>
+      <li><div><h3>Die Verwaltung entscheidet</h3><p>Die Auswahl und der Mietvertrag erfolgen durch die Verwaltung. Sie meldet sich direkt bei Ihnen.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section id="bewerben" class="form-section">
+  <div class="wrap">
+    <h2>Bewerbung</h2>
+    <p class="lead" style="margin-bottom:34px">Bitte füllen Sie alle Pflichtfelder aus. Bei vielen Interessenten kann ich leider nicht jede Bewerbung einzeln beantworten.</p>
+
+    <form id="form" novalidate>
+      <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+
+      <fieldset>
+        <legend>Ihre Angaben</legend>
+        <div class="grid c2">
+          <label class="f">Vorname<input type="text" name="vorname" required autocomplete="given-name"><span class="err-msg">Bitte Vornamen angeben.</span></label>
+          <label class="f">Nachname<input type="text" name="nachname" required autocomplete="family-name"><span class="err-msg">Bitte Nachnamen angeben.</span></label>
+          <label class="f">Geburtsdatum<input type="date" name="geburtsdatum" required><span class="err-msg">Bitte Geburtsdatum angeben.</span></label>
+          <label class="f">Nationalität / Aufenthaltsstatus
+            <select name="aufenthalt" required>
+              <option value="">Bitte wählen</option>
+              <option>Schweizer/in</option><option>Ausweis C</option><option>Ausweis B</option><option>Ausweis L</option><option>Ausweis G</option><option>Anderer</option>
+            </select><span class="err-msg">Bitte auswählen.</span></label>
+          <label class="f" style="grid-column:1/-1">Aktuelle Adresse<input type="text" name="adresse" required autocomplete="street-address" placeholder="Strasse Nr., PLZ Ort"><span class="err-msg">Bitte Adresse angeben.</span></label>
+          <label class="f">Telefon<input type="tel" name="telefon" required autocomplete="tel" placeholder="079 123 45 67"><span class="err-msg">Bitte Telefonnummer angeben.</span></label>
+          <label class="f">E-Mail<input type="email" name="email" required autocomplete="email"><span class="err-msg">Bitte gültige E-Mail angeben.</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Haushalt</legend>
+        <div class="grid c3">
+          <label class="f">Erwachsene<input type="number" name="erwachsene" min="1" max="4" value="1" required inputmode="numeric"><span class="err-msg">Mindestens 1.</span></label>
+          <label class="f">Kinder<input type="number" name="kinder" min="0" max="5" value="0" inputmode="numeric"></label>
+          <label class="f">Haustiere
+            <select name="haustiere"><option>Keine</option><option>Katze</option><option>Hund</option><option>Andere</option></select></label>
+          <label class="f">Rauchen Sie?
+            <select name="raucher"><option>Nein</option><option>Ja</option></select></label>
+          <label class="f">Gewünschter Einzug<input type="date" name="einzug" value="2026-11-01" required><span class="err-msg">Bitte Datum angeben.</span></label>
+          <label class="f">Aussenparkplatz (CHF 80)
+            <select name="parkplatz"><option>Nein</option><option>Ja, gewünscht</option></select></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Beruf und Einkommen</legend>
+        <div class="grid c2">
+          <label class="f">Beruf<input type="text" name="beruf" required><span class="err-msg">Bitte Beruf angeben.</span></label>
+          <label class="f">Arbeitgeber<input type="text" name="arbeitgeber" required><span class="err-msg">Bitte Arbeitgeber angeben.</span></label>
+          <label class="f">Angestellt seit <span class="opt">(Monat/Jahr)</span><input type="text" name="angestellt_seit" placeholder="z. B. 03/2022"></label>
+          <label class="f">Anstellung
+            <select name="anstellung"><option>Unbefristet</option><option>Befristet</option><option>Selbständig</option><option>In Ausbildung</option><option>Andere</option></select></label>
+          <label class="f" style="grid-column:1/-1">Bruttoeinkommen pro Monat, ganzer Haushalt (CHF)<input type="number" name="einkommen" min="0" step="100" required inputmode="numeric" placeholder="z. B. 6500"><span class="err-msg">Bitte Einkommen angeben.</span></label>
+          <label class="f" style="grid-column:1/-1">Aktuelle Vermieterin / Verwaltung <span class="opt">(optional, für Referenz)</span><input type="text" name="referenz" placeholder="Name und Telefon"></label>
+        </div>
+      </fieldset>
+
+      <fieldset id="fs-moebel">
+        <legend>Einrichtung für CHF 5'000</legend>
+        <p class="hint">Möchten Sie die komplette Einrichtung übernehmen? Ihre Antwort ist unverbindlich. Die Übernahme wird separat mit mir vereinbart und ist keine Bedingung für die Wohnung.</p>
+        <div class="choice" role="radiogroup">
+          <label><input type="radio" name="moebel" value="Ja" required><span>Ja, ich übernehme die komplette Einrichtung für CHF 5'000</span></label>
+          <label><input type="radio" name="moebel" value="Interessiert"><span>Interessiert, ich möchte die Möbel zuerst anschauen</span></label>
+          <label><input type="radio" name="moebel" value="Nein"><span>Nein, ich bringe meine eigenen Möbel</span></label>
+        </div>
+        <span class="err-msg">Bitte eine Option wählen.</span>
+      </fieldset>
+
+      <fieldset>
+        <legend>Unterlagen</legend>
+        <p class="hint">PDF oder Foto, max. 8 MB pro Datei. Vollständige Dossiers werden zuerst weitergeleitet.</p>
+        <div class="grid">
+          <div class="upload"><label class="f">Betreibungsregisterauszug <span class="opt">(nicht älter als 3 Monate)</span><input type="file" name="betreibung" accept="application/pdf,image/*"></label><div class="files"></div></div>
+          <div class="upload"><label class="f">Lohnabrechnungen <span class="opt">(letzte 3 Monate)</span><input type="file" name="lohn" accept="application/pdf,image/*" multiple></label><div class="files"></div></div>
+          <div class="upload"><label class="f">Ausweis oder Aufenthaltsbewilligung<input type="file" name="ausweis" accept="application/pdf,image/*" multiple></label><div class="files"></div></div>
+          <div class="upload"><label class="f">Weitere Unterlagen <span class="opt">(optional)</span><input type="file" name="weitere" accept="application/pdf,image/*" multiple></label><div class="files"></div></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Nachricht <span class="opt" style="font:400 16px var(--body);color:var(--ink-2)">(optional)</span></legend>
+        <label class="f"><span class="hint" style="display:block;margin:0">Erzählen Sie kurz etwas über sich.</span><textarea name="nachricht" maxlength="1500"></textarea></label>
+      </fieldset>
+
+      <fieldset>
+        <div class="check" id="consent-wrap">
+          <input type="checkbox" id="consent" name="consent" required>
+          <label for="consent">Ich bin einverstanden, dass meine Angaben und Unterlagen für diese Neuvermietung gespeichert und an die zuständige Verwaltung weitergeleitet werden. Die Daten werden nach Abschluss der Vermietung gelöscht.</label>
+        </div>
+        <span class="err-msg" id="consent-err">Bitte bestätigen.</span>
+      </fieldset>
+
+      <div class="submit-row">
+        <button class="btn" type="submit" id="submit">Bewerbung absenden</button>
+        <span class="status" id="status" role="status" aria-live="polite"></span>
+      </div>
+    </form>
+
+    <div class="done" id="done" tabindex="-1">
+      <h2>Bewerbung eingegangen</h2>
+      <p>Vielen Dank! Ihre Bewerbung ist bei mir angekommen. Vollständige Dossiers leite ich an die Verwaltung weiter, die sich direkt bei Ihnen meldet.</p>
+      <p>Ihre Referenznummer:</p>
+      <p class="ref" id="ref"></p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Ausgeschrieben von Lukas Blazevic, aktueller Mieter. Die Bewerbung wird durch mich entgegengenommen und an die zuständige Verwaltung weitergeleitet. Die definitive Auswahl und die Vertragsausstellung erfolgen durch die Verwaltung. Es besteht kein Anspruch auf Zuteilung der Wohnung.</p>
+    <p>Fragen: <a href="mailto:lukas.blazevic@hotmail.com">lukas.blazevic@hotmail.com</a></p>
+  </div>
+</footer>
+
+<div class="sticky hide" id="sticky"><a class="btn" href="#bewerben">Jetzt online bewerben</a></div>
+<script>
+/* ====== EINSTELLUNG ======
+   Hier die Web-App-URL aus Google Apps Script einfügen (siehe Anleitung, Schritt 2). */
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyrx6kprGQBMJDVTiTP29dh8FCfKLBs9HyK8uCnGDZPkr6Y59xr8Iqx8dRCE4SgtLOw/exec";
+/* ========================= */
+
+const PHOTOS = [
+  ["wohnen-essen","Wohn- und Essbereich"],["wohnzimmer","Wohnzimmer"],["wohnbereich","Blick Richtung Balkon"],
+  ["essbereich","Essbereich"],["balkon-aussicht","Balkon mit Aussicht"],["balkon","Balkon mit Sonnenstore"],
+  ["schlafzimmer","Schlafzimmer"],["schlafzimmer-schrank","Schlafzimmer mit Kleiderschrank"],["arbeitsplatz","Arbeitsplatz"],
+  ["kueche","Küche"],["kueche-2","Küche"],["kueche-schraenke","Küche mit viel Stauraum"],
+  ["kueche-kaffee","Kaffee-Ecke"],["sideboard","Eingangsbereich"],["bad","Bad mit Badewanne"]
+];
+
+// Galerie
+const gal = document.getElementById("gallery");
+PHOTOS.forEach(([f,c],i)=>{
+  const fig=document.createElement("figure");
+  fig.innerHTML=`<button type="button" aria-label="${c} gross anzeigen"><img src="foto-${f}.jpg" alt="${c}" loading="lazy"></button><figcaption>${c}</figcaption>`;
+  fig.querySelector("button").onclick=()=>openLb(i);
+  gal.appendChild(fig);
+});
+const lb=document.getElementById("lb"), lbImg=document.getElementById("lb-img"), lbCap=document.getElementById("lb-cap");
+let cur=0;
+function showLb(){const [f,c]=PHOTOS[cur];lbImg.src=`foto-${f}.jpg`;lbImg.alt=c;lbCap.textContent=`${c}  (${cur+1}/${PHOTOS.length})`;}
+function openLb(i){cur=i;showLb();lb.showModal();}
+function step(d){cur=(cur+d+PHOTOS.length)%PHOTOS.length;showLb();}
+document.getElementById("lb-prev").onclick=()=>step(-1);
+document.getElementById("lb-next").onclick=()=>step(1);
+document.getElementById("lb-close").onclick=()=>lb.close();
+lb.addEventListener("click",e=>{if(e.target===lb||e.target.classList.contains("lb-inner"))lb.close();});
+lb.addEventListener("keydown",e=>{if(e.key==="ArrowLeft")step(-1);if(e.key==="ArrowRight")step(1);});
+let tx=null;
+lb.addEventListener("touchstart",e=>{tx=e.touches[0].clientX},{passive:true});
+lb.addEventListener("touchend",e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)step(dx<0?1:-1);tx=null;});
+
+// Sticky-Button ausblenden, wenn Formular sichtbar
+const sticky=document.getElementById("sticky");
+const vis={hero:true,form:false};
+const upd=()=>sticky.classList.toggle("hide",vis.hero||vis.form);
+new IntersectionObserver(es=>{vis.hero=es[0].isIntersecting;upd()}).observe(document.querySelector(".hero .btn"));
+new IntersectionObserver(es=>{vis.form=es[0].isIntersecting;upd()},{rootMargin:"0px 0px -30% 0px"}).observe(document.getElementById("bewerben"));
+
+// Dateiliste anzeigen
+document.querySelectorAll(".upload input[type=file]").forEach(inp=>{
+  inp.addEventListener("change",()=>{
+    const box=inp.closest(".upload").querySelector(".files");
+    box.textContent=[...inp.files].map(f=>`${f.name} (${(f.size/1048576).toFixed(1)} MB)`).join(", ");
+  });
+});
+
+// Bilder verkleinern, damit Handyfotos schnell hochladen
+function shrinkImage(file){
+  return new Promise(res=>{
+    if(!file.type.startsWith("image/")||file.type==="image/gif") return res(null);
+    const url=URL.createObjectURL(file), img=new Image();
+    img.onload=()=>{
+      const max=2000, sc=Math.min(1,max/Math.max(img.width,img.height));
+      const c=document.createElement("canvas");c.width=Math.round(img.width*sc);c.height=Math.round(img.height*sc);
+      c.getContext("2d").drawImage(img,0,0,c.width,c.height);
+      URL.revokeObjectURL(url);
+      c.toBlob(b=>res(b),"image/jpeg",0.82);
+    };
+    img.onerror=()=>{URL.revokeObjectURL(url);res(null)};
+    img.src=url;
+  });
+}
+function toBase64(blob){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(String(r.result).split(",")[1]);r.onerror=rej;r.readAsDataURL(blob);});}
+
+const LABELS={betreibung:"Betreibungsauszug",lohn:"Lohnabrechnung",ausweis:"Ausweis",weitere:"Weitere"};
+async function collectFiles(form){
+  const out=[]; let total=0;
+  for(const key of Object.keys(LABELS)){
+    const files=[...form.elements[key].files];
+    for(const f of files){
+      if(f.size>8*1048576) throw new Error(`Die Datei «${f.name}» ist grösser als 8 MB.`);
+      let blob=f, name=f.name, type=f.type||"application/octet-stream";
+      const small=await shrinkImage(f);
+      if(small && small.size<f.size){blob=small;type="image/jpeg";name=name.replace(/\.[^.]+$/,"")+".jpg";}
+      total+=blob.size;
+      if(total>28*1048576) throw new Error("Die Dateien sind zusammen zu gross (max. ca. 28 MB).");
+      out.push({kind:LABELS[key],name,type,data:await toBase64(blob)});
+    }
+  }
+  return out;
+}
+
+// Validierung
+function validate(form){
+  let firstBad=null;
+  form.querySelectorAll("label.f").forEach(l=>l.classList.remove("invalid"));
+  form.querySelectorAll("input[required],select[required]").forEach(el=>{
+    if(el.type==="radio"||el.type==="checkbox")return;
+    if(!el.checkValidity()){const l=el.closest("label.f");l&&l.classList.add("invalid");firstBad=firstBad||el;}
+  });
+  const fsM=document.getElementById("fs-moebel");
+  const mOk=!!form.querySelector("input[name=moebel]:checked");
+  fsM.classList.toggle("invalid",!mOk); if(!mOk)firstBad=firstBad||fsM.querySelector("input");
+  const cOk=form.consent.checked;
+  document.getElementById("consent-err").style.display=cOk?"none":"block"; if(!cOk)firstBad=firstBad||form.consent;
+  if(firstBad){firstBad.focus();firstBad.scrollIntoView({block:"center"});return false;}
+  return true;
+}
+
+const form=document.getElementById("form"), btn=document.getElementById("submit"), statusEl=document.getElementById("status");
+form.addEventListener("submit",async e=>{
+  e.preventDefault();
+  statusEl.className="status";statusEl.textContent="";
+  if(!validate(form))return;
+  if(APPS_SCRIPT_URL.startsWith("HIER")){statusEl.className="status error";statusEl.textContent="Das Formular ist noch nicht verbunden (APPS_SCRIPT_URL fehlt).";return;}
+  btn.disabled=true;btn.textContent="Wird gesendet …";
+  try{
+    statusEl.textContent="Unterlagen werden vorbereitet …";
+    const fd=new FormData(form), data={};
+    for(const [k,v] of fd.entries()){ if(!(v instanceof File)) data[k]=v; }
+    data.files=await collectFiles(form);
+    statusEl.textContent="Bewerbung wird übermittelt. Bitte Seite nicht schliessen …";
+    const res=await fetch(APPS_SCRIPT_URL,{method:"POST",body:JSON.stringify(data)});
+    const out=await res.json();
+    if(!out.ok) throw new Error(out.error||"Unbekannter Fehler");
+    form.style.display="none";
+    document.getElementById("ref").textContent=out.ref;
+    const done=document.getElementById("done");done.style.display="block";done.focus();done.scrollIntoView({block:"start"});
+  }catch(err){
+    statusEl.className="status error";
+    statusEl.textContent=(err&&err.message&&!/fetch|network/i.test(err.message))?err.message:"Senden fehlgeschlagen. Bitte Internetverbindung prüfen und nochmals versuchen.";
+    btn.disabled=false;btn.textContent="Bewerbung absenden";
+  }
+});
+</script>
+</body>
+</html>

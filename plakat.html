@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QR-Plakat – Baslerstrasse 35</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<style>
+  @page{size:A4;margin:0}
+  *{box-sizing:border-box}
+  body{margin:0;background:#E7E3DC;font-family:Figtree,system-ui,sans-serif;color:#20272B}
+  .tools{max-width:210mm;margin:20px auto;padding:16px;background:#fff;border-radius:12px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .tools input{flex:1;min-width:240px;padding:12px;border:1.5px solid #CFC9BE;border-radius:8px;font-size:16px}
+  .tools button{padding:12px 20px;border:0;border-radius:999px;background:#20272B;color:#fff;font-weight:600;font-size:16px;cursor:pointer}
+  .sheet{width:210mm;height:297mm;margin:0 auto 30px;background:#FBFAF7;display:flex;flex-direction:column;overflow:hidden}
+  .photo{height:92mm;background:url(foto-wohnen-essen.jpg) center/cover}
+  .content{flex:1;padding:14mm 16mm 12mm;display:flex;flex-direction:column}
+  h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:44pt;line-height:1;margin:0;letter-spacing:-.02em}
+  .sub{font-family:"Bricolage Grotesque",sans-serif;font-size:17pt;margin:4mm 0 0;color:#4A555C}
+  .row{display:flex;gap:10mm;align-items:center;margin-top:10mm}
+  .qr{width:78mm;height:78mm;flex:none;background:#fff;padding:4mm;border-radius:6mm;border:1.5mm solid #20272B}
+  .qr svg,.qr img{width:100%;height:100%;display:block}
+  .steps{font-size:14pt;line-height:1.45}
+  .steps strong{display:block;font-family:"Bricolage Grotesque",sans-serif;font-size:24pt;line-height:1.1;margin-bottom:4mm}
+  .foot{margin-top:auto;display:flex;justify-content:space-between;gap:8mm;border-top:.4mm solid #D8D2C7;padding-top:5mm;font-size:12pt;color:#4A555C}
+  .moebel{background:#F3E4CF;color:#6B4418;border-radius:4mm;padding:3mm 5mm;font-weight:600;margin-top:8mm;font-size:13pt}
+  .url{font-size:10pt;color:#4A555C;word-break:break-all;margin-top:3mm;text-align:center}
+  @media print{body{background:#fff}.tools{display:none}.sheet{margin:0}}
+</style>
+</head>
+<body>
+<div class="tools">
+  <input id="url" placeholder="Link zur Webseite, z. B. https://deinname.github.io/wohnung/">
+  <button onclick="make()">QR-Code erstellen</button>
+  <button onclick="print()">Drucken</button>
+</div>
+
+<div class="sheet">
+  <div class="photo" role="img" aria-label="Wohn- und Essbereich"></div>
+  <div class="content">
+    <h1>Interesse an der Wohnung?</h1>
+    <p class="sub">2.5 Zimmer, Balkon, 6. Stock, frei per 31. Oktober 2026</p>
+    <div class="row">
+      <div>
+        <div class="qr" id="qr"></div>
+        <div class="url" id="urltext"></div>
+      </div>
+      <div class="steps">
+        <strong>QR-Code scannen und online bewerben</strong>
+        Angaben ausfüllen, Betreibungsauszug und Lohnabrechnungen direkt mit dem Handy hochladen. Dauert etwa 5 Minuten.
+      </div>
+    </div>
+    <div class="moebel">Die komplette Einrichtung kann für CHF 5'000 übernommen werden. Freiwillig, separat vom Mietvertrag.</div>
+    <div class="foot">
+      <span>Baslerstrasse 35, 8048 Zürich</span>
+      <span>CHF 1'750 brutto</span>
+    </div>
+  </div>
+</div>
+
+<script>
+function make(){
+  const u=document.getElementById('url').value.trim();
+  if(!u)return;
+  const q=qrcode(0,'M'); q.addData(u); q.make();
+  document.getElementById('qr').innerHTML=q.createSvgTag({cellSize:8,margin:0,scalable:true});
+  document.getElementById('urltext').textContent=u.replace(/^https?:\/\//,'');
+}
+const p=new URLSearchParams(location.search).get('url');
+if(p){document.getElementById('url').value=p;}
+else if(location.protocol==='https:'){document.getElementById('url').value=location.href.replace(/plakat\.html.*$/,'');}
+window.addEventListener('load',()=>{ if(document.getElementById('url').value) make(); });
+</script>
+</body>
+</html>
