@@ -102,6 +102,32 @@ dialog.lb::backdrop{background:rgba(15,18,20,.94)}
 .furn .note{font-size:15px;color:#AEB7BC;border-left:3px solid #F0C48F;padding-left:14px;margin-top:20px}
 @media(min-width:860px){.furn{padding:48px}.furn-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}.furn ul{columns:1}}
 
+
+.furn-head{display:grid;gap:18px;margin-bottom:26px}
+@media(min-width:860px){.furn-head{grid-template-columns:1.4fr 1fr;align-items:end}.furn-price{text-align:right}}
+.furn-price .price{font-size:clamp(46px,7vw,76px);white-space:nowrap}
+.furn .save{color:#F0C48F;font-weight:600;margin:6px 0 0}
+.mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:620px){.mgrid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:960px){.mgrid{grid-template-columns:repeat(4,1fr)}}
+.mtile{background:rgba(255,255,255,.07);border-radius:14px;overflow:hidden;margin:0}
+.mtile .ph{overflow:hidden;aspect-ratio:4/3}.mtile img{width:100%;height:100%;object-fit:cover}
+.mtile figcaption{padding:10px 12px 12px;font-size:15px;line-height:1.35}
+.mtile b{display:block;color:#fff;font-weight:600}
+.mtile s{color:#8F9A9F;font-size:13px;margin-right:6px}
+.mtile .p{color:#F0C48F;font-weight:700}
+.choice label.best{border-color:var(--oak);background:#FFF8EE}
+.choice label.best:has(input:checked){border-color:var(--ink)}
+.picker{background:#fff;border:1.5px solid #CFC9BE;border-radius:12px;margin-top:10px;padding:6px 14px 12px}
+.pick{display:grid;grid-template-columns:22px 52px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.pick input{width:18px;height:18px;accent-color:var(--ink)}
+.pick .pph{width:52px;height:40px;overflow:hidden;border-radius:6px;display:block}.pick img{width:100%;height:100%;object-fit:cover}
+.pick .nm{font-weight:600;font-size:15px}
+.pick .pr{text-align:right;font-size:15px;white-space:nowrap}
+.pick .pr s{display:block;color:var(--ink-2);font-size:13px}
+.picksum{margin:12px 0 0;font-weight:600}
+.picksum small{display:block;font-weight:400;color:var(--ink-2)}
+
 /* Ablauf */
 .steps{list-style:none;padding:0;margin:0;display:grid;gap:18px;counter-reset:s}
 .steps li{counter-increment:s;display:grid;grid-template-columns:48px 1fr;gap:14px;align-items:start}
@@ -346,39 +372,20 @@ footer p{max-width:70ch}
 
 <section id="einrichtung" style="padding-top:0">
   <div class="wrap">
-    <div class="furn furn-grid">
-      <div>
-        <h2>Diese Möbel können übernommen werden</h2>
-        <p>Wer möchte, kann die unten aufgeführten Möbel übernehmen und muss weniger zügeln.</p>
-        <div class="price">CHF 4'500</div>
-        <p style="margin:0">für alle aufgeführten Möbel zusammen</p>
-        <ul>
-          <li>Ecksofa</li>
-          <li>Salontisch</li>
-          <li>TV-Sideboard</li>
-          <li>Boxspringbett 180 × 200 cm</li>
-          <li>2 Nachttische</li>
-          <li>Kleiderschrank mit Spiegeltür</li>
-          <li>Esstisch mit 4 Stühlen</li>
-          <li>2 Regale</li>
-          <li>Bürotisch</li>
-          <li>Schuhschrank</li>
-          <li>Holzplatten auf dem Balkon</li>
-          <li>Ecklounge auf dem Balkon</li>
-        </ul>
-        <p style="font-size:15px;color:#AEB7BC;margin:0">Nicht aufgeführte Gegenstände wie Deko, Lampen und Elektrogeräte nehme ich mit.</p>
-      </div>
-      <div>
-        <div class="thumbs">
-          <img src="foto-wohnzimmer.jpg" alt="Ecksofa, Salontisch und TV-Sideboard" loading="lazy">
-          <img src="foto-schlafzimmer-schrank.jpg" alt="Boxspringbett und Kleiderschrank" loading="lazy">
-          <img src="foto-essbereich.jpg" alt="Esstisch mit Stühlen und Regal" loading="lazy">
-          <img src="foto-balkon.jpg" alt="Balkon mit Holzplatten" loading="lazy">
-          <img src="foto-arbeitsplatz.jpg" alt="Bürotisch und Schuhschrank" loading="lazy">
-          <img src="foto-sideboard.jpg" alt="TV-Sideboard" loading="lazy">
+    <div class="furn">
+      <div class="furn-head">
+        <div>
+          <h2>Diese Möbel können übernommen werden</h2>
+          <p>Wer möchte, kann die Möbel übernehmen und muss weniger zügeln. Einzelne Stücke sind ebenfalls möglich.</p>
         </div>
-        <p class="note">Die Übernahme ist ein separates Angebot zwischen Ihnen und mir und nicht Teil des Mietvertrags. Sie ist freiwillig und keine Bedingung für die Weiterleitung Ihrer Bewerbung.</p>
+        <div class="furn-price">
+          <div class="price">CHF 4'500</div>
+          <p style="margin:0">für alle Möbel zusammen</p>
+          <p class="save" id="furn-save"></p>
+        </div>
       </div>
+      <div class="mgrid" id="mgrid"></div>
+      <p class="note">Nicht aufgeführte Gegenstände wie Deko, Lampen und Elektrogeräte nehme ich mit. Die Übernahme ist ein separates Angebot zwischen Ihnen und mir und nicht Teil des Mietvertrags. Sie ist freiwillig und keine Bedingung für die Weiterleitung Ihrer Bewerbung.</p>
     </div>
   </div>
 </section>
@@ -448,14 +455,18 @@ footer p{max-width:70ch}
       </fieldset>
 
       <fieldset id="fs-moebel">
-        <legend>Möbel für CHF 4'500</legend>
-        <p class="hint">Möchten Sie die aufgeführten Möbel übernehmen? Ihre Antwort ist unverbindlich. Die Übernahme wird separat mit mir vereinbart und ist keine Bedingung für die Wohnung.</p>
+        <legend>Möbel übernehmen</legend>
+        <p class="hint">Ihre Antwort ist unverbindlich. Die Übernahme wird separat mit mir vereinbart und ist keine Bedingung für die Wohnung.</p>
         <div class="choice" role="radiogroup">
-          <label><input type="radio" name="moebel" value="Ja" required><span>Ja, ich übernehme die aufgeführten Möbel für CHF 4'500</span></label>
-          <label><input type="radio" name="moebel" value="Interessiert"><span>Interessiert, ich möchte die Möbel zuerst anschauen</span></label>
-          <label><input type="radio" name="moebel" value="Nein"><span>Nein, ich bringe meine eigenen Möbel</span></label>
+          <label class="best"><input type="radio" name="moebel" value="Alle" required><span>Ja, alle Möbel für CHF 4'500<small id="save-hint"></small></span></label>
+          <label><input type="radio" name="moebel" value="Einzelne"><span>Nur einzelne Möbel<small>Sie wählen unten aus, was Sie möchten.</small></span></label>
+          <label><input type="radio" name="moebel" value="Nein"><span>Nein, keine Möbel</span></label>
         </div>
-        <span class="err-msg">Bitte eine Option wählen.</span>
+        <div class="picker" id="picker" hidden>
+          <div id="picklist"></div>
+          <p class="picksum" id="picksum">Noch nichts ausgewählt.</p>
+        </div>
+        <span class="err-msg" id="moebel-err">Bitte eine Option wählen.</span>
       </fieldset>
 
       <fieldset>
@@ -511,6 +522,39 @@ footer p{max-width:70ch}
    Hier die Web-App-URL aus Google Apps Script einfügen (siehe Anleitung, Schritt 2). */
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyrx6kprGQBMJDVTiTP29dh8FCfKLBs9HyK8uCnGDZPkr6Y59xr8Iqx8dRCE4SgtLOw/exec";
 /* ========================= */
+
+/* ====== MÖBEL: Namen, Neupreis, Übernahmepreis, Foto ======
+   Fotos: Datei hochladen (z. B. moebel-sofa.jpg) und hier bei foto eintragen.
+   pos/zoom = Bildausschnitt (nur für die vorläufigen Raumfotos, bei eigenen Fotos weglassen). */
+const PAKETPREIS = 4500;
+const MOEBEL = [
+  {name:"Ecksofa", neu:2200, preis:1300, foto:"foto-wohnzimmer.jpg", pos:"30% 65%", zoom:1.8},
+  {name:"Salontisch", neu:350, preis:150, foto:"foto-wohnzimmer.jpg", pos:"52% 72%", zoom:2.5},
+  {name:"TV-Sideboard", neu:450, preis:200, foto:"foto-sideboard.jpg", pos:"22% 80%", zoom:2},
+  {name:"Boxspringbett 180 × 200 cm", neu:1900, preis:1200, foto:"foto-schlafzimmer.jpg", pos:"48% 65%", zoom:1.5},
+  {name:"2 Nachttische", neu:200, preis:80, foto:"foto-schlafzimmer-schrank.jpg", pos:"18% 52%", zoom:3},
+  {name:"Kleiderschrank mit Spiegeltür", neu:900, preis:500, foto:"foto-schlafzimmer-schrank.jpg", pos:"96% 30%", zoom:2.4},
+  {name:"Esstisch mit 4 Stühlen", neu:1200, preis:650, foto:"foto-essbereich.jpg", pos:"45% 62%", zoom:1.8},
+  {name:"2 Regale", neu:300, preis:120, foto:"foto-essbereich.jpg", pos:"77% 45%", zoom:2.2},
+  {name:"Bürotisch", neu:500, preis:250, foto:"foto-arbeitsplatz.jpg", pos:"35% 55%", zoom:1.6},
+  {name:"Schuhschrank", neu:250, preis:100, foto:"foto-arbeitsplatz.jpg", pos:"84% 50%", zoom:2.2},
+  {name:"Holzplatten Balkon", neu:400, preis:200, foto:"foto-balkon.jpg", pos:"35% 90%", zoom:2},
+  {name:"Ecklounge Balkon", neu:900, preis:500, foto:"foto-balkon-aussicht.jpg", pos:"72% 58%", zoom:2.2}
+];
+const chf = n => "CHF " + n.toLocaleString("de-CH").replace(/[’\u202f\u00a0 ]/g,"'");
+const SUM_EINZEL = MOEBEL.reduce((a,m)=>a+m.preis,0), SUM_NEU = MOEBEL.reduce((a,m)=>a+m.neu,0);
+document.getElementById("furn-save").innerHTML = `Einzeln zusammen ${chf(SUM_EINZEL)}<br>Neupreis ${chf(SUM_NEU)}`;
+document.getElementById("save-hint").textContent = `Sie sparen ${chf(SUM_EINZEL-PAKETPREIS)} gegenüber Einzelkauf (Neupreis ${chf(SUM_NEU)}).`;
+const esc = t => t.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+document.getElementById("mgrid").innerHTML = MOEBEL.map(m=>`<figure class="mtile"><div class="ph"><img src="${m.foto}" alt="${esc(m.name)}" loading="lazy" style="${m.zoom?`transform:scale(${m.zoom});transform-origin:${m.pos}`:""}"></div><figcaption><b>${esc(m.name)}</b><s>${chf(m.neu)}</s><span class="p">${chf(m.preis)}</span></figcaption></figure>`).join("");
+document.getElementById("picklist").innerHTML = MOEBEL.map((m,i)=>`<label class="pick"><input type="checkbox" name="mw" value="${i}"><span class="pph"><img src="${m.foto}" alt="" style="${m.zoom?`transform:scale(${m.zoom});transform-origin:${m.pos}`:""}"></span><span class="nm">${esc(m.name)}</span><span class="pr"><s>${chf(m.neu)}</s>${chf(m.preis)}</span></label>`).join("");
+function auswahl(){ return [...document.querySelectorAll("input[name=mw]:checked")].map(c=>MOEBEL[+c.value]); }
+function updPick(){
+  const a=auswahl(), sum=a.reduce((x,m)=>x+m.preis,0), neu=a.reduce((x,m)=>x+m.neu,0);
+  document.getElementById("picksum").innerHTML = a.length ? `Ihre Auswahl: ${chf(sum)}<small>${a.length} Stück, Neupreis ${chf(neu)}${sum>=PAKETPREIS*0.8?`. Tipp: Alle Möbel zusammen kosten nur ${chf(PAKETPREIS)}.`:""}</small>` : "Noch nichts ausgewählt.";
+}
+document.getElementById("picklist").addEventListener("change",updPick);
+document.querySelectorAll("input[name=moebel]").forEach(r=>r.addEventListener("change",()=>{document.getElementById("picker").hidden = document.querySelector("input[name=moebel]:checked")?.value!=="Einzelne";}));
 
 const PHOTOS = [
   ["wohnen-essen","Wohn- und Essbereich"],["wohnzimmer","Wohnzimmer"],["wohnbereich","Blick Richtung Balkon"],
@@ -602,7 +646,9 @@ function validate(form){
     if(!el.checkValidity()){const l=el.closest("label.f");l&&l.classList.add("invalid");firstBad=firstBad||el;}
   });
   const fsM=document.getElementById("fs-moebel");
-  const mOk=!!form.querySelector("input[name=moebel]:checked");
+  const mSel=form.querySelector("input[name=moebel]:checked");
+  const mOk=!!mSel && (mSel.value!=="Einzelne" || auswahl().length>0);
+  document.getElementById("moebel-err").textContent = mSel ? "Bitte mindestens ein Möbelstück auswählen." : "Bitte eine Option wählen.";
   fsM.classList.toggle("invalid",!mOk); if(!mOk)firstBad=firstBad||fsM.querySelector("input");
   const cOk=form.consent.checked;
   document.getElementById("consent-err").style.display=cOk?"none":"block"; if(!cOk)firstBad=firstBad||form.consent;
@@ -620,7 +666,9 @@ form.addEventListener("submit",async e=>{
   try{
     statusEl.textContent="Unterlagen werden vorbereitet …";
     const fd=new FormData(form), data={};
-    for(const [k,v] of fd.entries()){ if(!(v instanceof File)) data[k]=v; }
+    for(const [k,v] of fd.entries()){ if(!(v instanceof File) && k!=="mw") data[k]=v; }
+    if(data.moebel==="Einzelne"){const a=auswahl();data.moebel_auswahl=a.map(m=>m.name).join(", ");data.moebel_summe=a.reduce((x,m)=>x+m.preis,0);}
+    if(data.moebel==="Alle"){data.moebel_summe=PAKETPREIS;}
     data.files=await collectFiles(form);
     statusEl.textContent="Bewerbung wird übermittelt. Bitte Seite nicht schliessen …";
     const res=await fetch(APPS_SCRIPT_URL,{method:"POST",body:JSON.stringify(data)});
