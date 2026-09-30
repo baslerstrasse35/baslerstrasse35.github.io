@@ -530,19 +530,19 @@ const PAKETPREIS = 4500;
 const MOEBEL = [
   {name:"Ecksofa", neu:1124, preis:840, foto:"foto-wohnzimmer.jpg", pos:"30% 65%", zoom:1.8},
   {name:"Couchtisch", neu:299, preis:220, foto:"foto-wohnzimmer.jpg", pos:"52% 72%", zoom:2.5},
-  {name:"TV-Lowboard", neu:319, preis:240, foto:"foto-sideboard.jpg", pos:"22% 80%", zoom:2},
-  {name:"Boxspringbett 180 × 200 cm", neu:999, preis:750, foto:"foto-schlafzimmer.jpg", pos:"48% 65%", zoom:1.5},
-  {name:"2 Nachttische (je CHF 79)", neu:158, preis:120, foto:"foto-schlafzimmer-schrank.jpg", pos:"18% 52%", zoom:3},
+  {name:"TV-Lowboard", neu:319, preis:240, foto:"moebel-tv-lowboard.webp"},
+  {name:"Boxspringbett 180 × 200 cm", neu:999, preis:750, foto:"moebel-boxspringbett.webp"},
+  {name:"2 Nachttische (je CHF 79)", neu:158, preis:120, foto:"moebel-nachttisch.webp"},
   {name:"Kleiderschrank mit Spiegeltür", neu:1644, preis:1230, foto:"foto-schlafzimmer-schrank.jpg", pos:"96% 30%", zoom:2.4},
-  {name:"Esstisch ausziehbar", neu:519, preis:390, foto:"foto-essbereich.jpg", pos:"45% 62%", zoom:1.8},
-  {name:"4 Polsterstühle", neu:369, preis:280, foto:"foto-wohnen-essen.jpg", pos:"28% 78%", zoom:1.8},
-  {name:"Regal Seaford gross", neu:179, preis:130, foto:"foto-essbereich.jpg", pos:"77% 45%", zoom:2.2},
-  {name:"Regal Seaford klein", neu:139, preis:100, foto:"foto-bad.jpg", pos:"92% 70%", zoom:2.2},
-  {name:"Schuhschrank", neu:439, preis:330, foto:"foto-essbereich.jpg", pos:"14% 56%", zoom:3},
-  {name:"Sideboard", neu:379, preis:280, foto:"foto-arbeitsplatz.jpg", pos:"84% 50%", zoom:2.2},
+  {name:"Esstisch ausziehbar", neu:519, preis:390, foto:"moebel-esstisch.webp"},
+  {name:"4 Polsterstühle", neu:369, preis:280, foto:"moebel-stuehle.webp"},
+  {name:"Regal Seaford gross", neu:179, preis:130, foto:"moebel-regal-gross.webp"},
+  {name:"Regal Seaford klein", neu:139, preis:100, foto:"moebel-regal-klein.webp"},
+  {name:"Schuhschrank", neu:439, preis:330, foto:"foto-arbeitsplatz.jpg", pos:"84% 50%", zoom:2.2},
+  {name:"Sideboard", neu:379, preis:280, foto:"moebel-sideboard.webp"},
   {name:"Bürotisch", inkl:true, foto:"foto-arbeitsplatz.jpg", pos:"35% 55%", zoom:1.6},
-  {name:"Holzplatten Balkon", inkl:true, foto:"foto-balkon.jpg", pos:"35% 90%", zoom:2},
-  {name:"Ecklounge Balkon", inkl:true, foto:"foto-balkon-aussicht.jpg", pos:"72% 58%", zoom:2.2}
+  {name:"Holzplatten Balkon", inkl:true, foto:"moebel-holzplatten.webp"},
+  {name:"Ecklounge Balkon", inkl:true, foto:"moebel-ecklounge.webp"}
 ];
 const chf = n => "CHF " + n.toLocaleString("de-CH").replace(/[’\u202f\u00a0 ]/g,"'");
 const EINZEL = MOEBEL.filter(m=>!m.inkl);
