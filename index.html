@@ -540,21 +540,21 @@ const MOEBEL = [
   {name:"Regal Seaford klein", neu:139, preis:100, foto:"moebel-regal-klein.webp"},
   {name:"Schuhschrank", neu:439, preis:330, foto:"foto-arbeitsplatz.jpg", pos:"84% 50%", zoom:2.2},
   {name:"Sideboard", neu:379, preis:280, foto:"moebel-sideboard.webp"},
-  {name:"Bürotisch", inkl:true, foto:"foto-arbeitsplatz.jpg", pos:"35% 55%", zoom:1.6},
-  {name:"Holzplatten Balkon", inkl:true, foto:"moebel-holzplatten.webp"},
-  {name:"Ecklounge Balkon", inkl:true, foto:"moebel-ecklounge.webp"}
+  {name:"Bürotisch", preis:150, foto:"foto-arbeitsplatz.jpg", pos:"35% 55%", zoom:1.6},
+  {name:"Holzplatten Balkon", preis:150, foto:"moebel-holzplatten.webp"},
+  {name:"Ecklounge Balkon", preis:350, foto:"moebel-ecklounge.webp"}
 ];
 const chf = n => "CHF " + n.toLocaleString("de-CH").replace(/[’\u202f\u00a0 ]/g,"'");
 const EINZEL = MOEBEL.filter(m=>!m.inkl);
-const SUM_EINZEL = EINZEL.reduce((a,m)=>a+m.preis,0), SUM_NEU = EINZEL.reduce((a,m)=>a+m.neu,0);
-document.getElementById("furn-save").innerHTML = SUM_EINZEL>PAKETPREIS ? `Einzeln zusammen ${chf(SUM_EINZEL)}<br>Neupreis ${chf(SUM_NEU)}` : "";
+const SUM_EINZEL = EINZEL.reduce((a,m)=>a+m.preis,0), SUM_NEU = EINZEL.reduce((a,m)=>a+(m.neu||0),0);
+document.getElementById("furn-save").innerHTML = SUM_EINZEL>PAKETPREIS ? `Einzeln zusammen ${chf(SUM_EINZEL)}` : "";
 document.getElementById("save-hint").textContent = SUM_EINZEL>PAKETPREIS ? `Sie sparen ${chf(SUM_EINZEL-PAKETPREIS)} gegenüber Einzelkauf.` : "Inklusive Bürotisch, Holzplatten und Ecklounge Balkon.";
 const esc = t => t.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-document.getElementById("mgrid").innerHTML = MOEBEL.map(m=>`<figure class="mtile"><div class="ph"><img src="${m.foto}" alt="${esc(m.name)}" loading="lazy" style="${m.zoom?`transform:scale(${m.zoom});transform-origin:${m.pos}`:""}"></div><figcaption><b>${esc(m.name)}</b>${m.inkl?`<span class="p">Nur im Gesamtpaket</span>`:`<s>${chf(m.neu)}</s><span class="p">${chf(m.preis)}</span>`}</figcaption></figure>`).join("");
-document.getElementById("picklist").innerHTML = MOEBEL.map((m,i)=>m.inkl?"":`<label class="pick"><input type="checkbox" name="mw" value="${i}"><span class="pph"><img src="${m.foto}" alt="" style="${m.zoom?`transform:scale(${m.zoom});transform-origin:${m.pos}`:""}"></span><span class="nm">${esc(m.name)}</span><span class="pr"><s>${chf(m.neu)}</s>${chf(m.preis)}</span></label>`).join("");
+document.getElementById("mgrid").innerHTML = MOEBEL.map(m=>`<figure class="mtile"><div class="ph"><img src="${m.foto}" alt="${esc(m.name)}" loading="lazy" style="${m.zoom?`transform:scale(${m.zoom});transform-origin:${m.pos}`:""}"></div><figcaption><b>${esc(m.name)}</b>${m.inkl?`<span class="p">Nur im Gesamtpaket</span>`:`${m.neu?`<s>${chf(m.neu)}</s>`:""}<span class="p">${chf(m.preis)}</span>`}</figcaption></figure>`).join("");
+document.getElementById("picklist").innerHTML = MOEBEL.map((m,i)=>m.inkl?"":`<label class="pick"><input type="checkbox" name="mw" value="${i}"><span class="pph"><img src="${m.foto}" alt="" style="${m.zoom?`transform:scale(${m.zoom});transform-origin:${m.pos}`:""}"></span><span class="nm">${esc(m.name)}</span><span class="pr">${m.neu?`<s>${chf(m.neu)}</s>`:""}${chf(m.preis)}</span></label>`).join("");
 function auswahl(){ return [...document.querySelectorAll("input[name=mw]:checked")].map(c=>MOEBEL[+c.value]); }
 function updPick(){
-  const a=auswahl(), sum=a.reduce((x,m)=>x+m.preis,0), neu=a.reduce((x,m)=>x+m.neu,0);
+  const a=auswahl(), sum=a.reduce((x,m)=>x+m.preis,0), neu=a.reduce((x,m)=>x+(m.neu||0),0);
   document.getElementById("picksum").innerHTML = a.length ? `Ihre Auswahl: ${chf(sum)}<small>${a.length} Stück, Neupreis ${chf(neu)}${sum>=PAKETPREIS*0.8?`. Tipp: Alle Möbel zusammen kosten nur ${chf(PAKETPREIS)}.`:""}</small>` : "Noch nichts ausgewählt.";
 }
 document.getElementById("picklist").addEventListener("change",updPick);
