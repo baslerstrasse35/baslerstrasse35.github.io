@@ -50,6 +50,11 @@ input[type=text]{width:100%;margin-top:6px;padding:13px 14px;border:1.5px solid 
 .sig{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:48px}
 .sig div{border-top:1px solid var(--ink);padding-top:6px;font-size:13px}
 .noprint{}
+.sigpad{background:#fff;border:1.5px dashed #9AA3A8;border-radius:12px;touch-action:none;width:100%;height:180px;display:block;cursor:crosshair}
+.sigrow{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:14px;color:var(--ink-2)}
+.linkbtn{background:none;border:0;color:var(--ink);text-decoration:underline;font:500 14px var(--body);cursor:pointer;padding:0}
+.sigimg{height:70px;display:block;margin-bottom:4px}
+.preview{margin-top:18px}
 @media print{body{background:#fff}.wrap{padding:0;max-width:none}.noprint{display:none!important}.contract{border:0;padding:0}@page{size:A4;margin:18mm}}
 @media(max-width:560px){.contract{padding:22px 16px}.contract .parties,.sig{grid-template-columns:1fr}}
 </style>
@@ -60,7 +65,7 @@ input[type=text]{width:100%;margin-top:6px;padding:13px 14px;border:1.5px solid 
 <script>
 const API = "https://script.google.com/macros/s/AKfycbyrx6kprGQBMJDVTiTP29dh8FCfKLBs9HyK8uCnGDZPkr6Y59xr8Iqx8dRCE4SgtLOw/exec";
 const VERKAEUFER = { name: "Lukas Blazevic", adresse: "Baslerstrasse 35, 8048 Zürich" };
-const UEBERGABE = "31. Oktober 2026";
+const UEBERGABE = "1. November 2026";
 /* Gleiche Liste und Preise wie auf der Hauptseite (index.html) */
 const PAKETPREIS = 5000;
 const MOEBEL = [
@@ -103,63 +108,10 @@ function selected(){
   return {mode, items, betrag:items.reduce((a,m)=>a+m.preis,0)};
 }
 
-function renderForm(){
-  const pre = (D.auswahl||"").split(", ").filter(Boolean);
-  const einzelnSum = MOEBEL.reduce((a,m)=>a+m.preis,0);
-  app.innerHTML = `
-    <p class="muted">Baslerstrasse 35, 8048 Zürich · Ref. ${esc(D.ref)}</p>
-    <h1>Möbelkauf verbindlich bestätigen</h1>
-    <p>Guten Tag ${esc(D.vorname)} ${esc(D.nachname)}. Bitte bestätigen Sie, welche Möbel Sie übernehmen. Nach der Bestätigung erhalten Sie den Kaufvertrag zum Ausdrucken und Unterschreiben.</p>
-    <div class="choice">
-      <label><input type="radio" name="mode" value="Alle" ${D.moebel!=="Einzelne"?"checked":""}><span><b>Alle Möbel für ${chf(PAKETPREIS)}</b><br><small class="muted">statt ${chf(einzelnSum)} einzeln</small></span></label>
-      <label><input type="radio" name="mode" value="Einzelne" ${D.moebel==="Einzelne"?"checked":""}><span><b>Nur einzelne Möbel</b></span></label>
-    </div>
-    <div class="card" id="list">${MOEBEL.map((m,i)=>`<label class="item"><input type="checkbox" name="it" value="${i}" ${pre.includes(m.name)?"checked":""}><span>${esc(m.name)}</span><span class="pr">${chf(m.preis)}</span></label>`).join("")}</div>
-    <p class="total" id="total"></p>
-    <h2>Bedingungen</h2>
-    <ul class="terms">
-      <li>Übergabe und Bezahlung bei der Schlüsselübergabe am ${UEBERGABE} (bar, TWINT oder Überweisung).</li>
-      <li>Die Möbel werden im aktuellen, gebrauchten Zustand übernommen, wie besichtigt. Eine Gewährleistung ist ausgeschlossen.</li>
-      <li>Das Eigentum geht mit vollständiger Bezahlung über.</li>
-      <li>Der Kauf ist freiwillig, ein eigenständiges Geschäft zwischen Ihnen und dem Verkäufer und nicht Teil des Mietvertrags.</li>
-      <li>Kommt der Mietvertrag mit Ihnen nicht zustande, fällt dieser Kauf ohne Kostenfolge dahin.</li>
-    </ul>
-    <label class="check"><input type="checkbox" id="agree"><span>Ich bestätige verbindlich, die oben ausgewählten Möbel zu den genannten Bedingungen zu kaufen.</span></label>
-    <label class="f">Vor- und Nachname als Unterschrift<input type="text" id="sig" autocomplete="name" placeholder="${esc(D.vorname)} ${esc(D.nachname)}"></label>
-    <button class="btn" id="go">Kauf verbindlich bestätigen</button>
-    <p class="status" id="status" role="status"></p>`;
-  const upd=()=>{
-    const s=selected(); const list=document.getElementById("list");
-    list.style.opacity = s.mode==="Alle" ? .45 : 1; list.style.pointerEvents = s.mode==="Alle" ? "none":"auto";
-    document.getElementById("total").textContent = s.mode==="Alle" ? `Total: ${chf(PAKETPREIS)}` : (s.items.length ? `Total: ${chf(s.betrag)}` : "Bitte Möbel auswählen");
-  };
-  app.addEventListener("change",upd); upd();
-  document.getElementById("go").onclick = submit;
-}
-
-async function submit(){
-  const st=document.getElementById("status"), btn=document.getElementById("go"); st.className="status"; st.textContent="";
-  const s=selected(), sig=document.getElementById("sig").value.trim();
-  if(!s.items.length){st.className="status error";st.textContent="Bitte mindestens ein Möbelstück auswählen.";return;}
-  if(!document.getElementById("agree").checked){st.className="status error";st.textContent="Bitte die Bestätigung ankreuzen.";return;}
-  if(sig.length<4){st.className="status error";st.textContent="Bitte Vor- und Nachname eingeben.";return;}
-  const items = s.mode==="Alle" ? "Gesamtpaket: " + MOEBEL.map(m=>m.name).join(", ") : s.items.map(m=>m.name).join(", ");
-  btn.disabled=true; btn.textContent="Wird gespeichert …";
-  try{
-    const r=await fetch(API,{method:"POST",body:JSON.stringify({action:"confirm",ref:REF,k:K,items,betrag:s.betrag,unterschrift:sig})});
-    const o=await r.json(); if(!o.ok) throw new Error(o.error||"Fehler");
-    await load();
-  }catch(e){ st.className="status error"; st.textContent="Speichern fehlgeschlagen: "+e.message; btn.disabled=false; btn.textContent="Kauf verbindlich bestätigen"; }
-}
-
-function renderContract(){
-  const paket = D.confirmedItems.startsWith("Gesamtpaket");
-  const names = paket ? MOEBEL.map(m=>m.name) : D.confirmedItems.split(", ");
-  const rows = names.map(n=>{const m=MOEBEL.find(x=>x.name===n);return `<tr><td>${esc(n)}</td><td class="r">${paket?"":(m?chf(m.preis):"")}</td></tr>`}).join("");
-  app.innerHTML = `
-    <div class="noprint box"><b>✅ Ihr Kauf ist bestätigt.</b> Bitte drucken Sie den Vertrag aus und bringen Sie ihn unterschrieben zur Schlüsselübergabe mit. Eine Bestätigung wurde Ihnen auch per E-Mail geschickt.<br>
-      <button class="btn" onclick="print()">Vertrag drucken / als PDF speichern</button></div>
-    <div class="contract">
+function contractHtml(o){
+  // o: {items:[{name,preis}], paket, betrag, sigImg, sigText}
+  const rows = o.items.map(m=>`<tr><td>${esc(m.name)}</td><td class="r">${o.paket?"":chf(m.preis)}</td></tr>`).join("");
+  return `<div class="contract">
       <h1>Kaufvertrag über Möbel</h1>
       <p class="muted">Wohnung Baslerstrasse 35, 8048 Zürich · Ref. ${esc(D.ref)}</p>
       <div class="parties">
@@ -167,20 +119,115 @@ function renderContract(){
         <div><b>Käufer/in</b><br>${esc(D.vorname)} ${esc(D.nachname)}<br>${esc(D.adresse)}<br>${D.geburtsdatum?"geb. "+esc(D.geburtsdatum)+"<br>":""}${esc(D.telefon)} · ${esc(D.email)}</div>
       </div>
       <h2>1. Kaufgegenstand</h2>
-      <table><thead><tr><th>Möbelstück</th><th class="r">${paket?"":"Preis"}</th></tr></thead><tbody>${rows}</tbody>
-      <tfoot><tr><th>${paket?"Kaufpreis Gesamtpaket":"Kaufpreis total"}</th><th class="r">${chf(D.betrag)}</th></tr></tfoot></table>
+      <table><thead><tr><th>Möbelstück</th><th class="r">${o.paket?"":"Preis"}</th></tr></thead><tbody>${rows}</tbody>
+      <tfoot><tr><th>${o.paket?"Kaufpreis Gesamtpaket":"Kaufpreis total"}</th><th class="r">${chf(o.betrag)}</th></tr></tfoot></table>
       <h2>2. Bestimmungen</h2>
       <ol>
-        <li>Die Möbel werden am ${UEBERGABE} bei der Schlüsselübergabe in der Wohnung übergeben. Der Kaufpreis ist bei der Übergabe vollständig zu bezahlen (bar, TWINT oder Überweisung).</li>
+        <li>Die Möbel werden bei der Schlüsselübergabe zum Mietbeginn am ${UEBERGABE} in der Wohnung übergeben. Der Kaufpreis ist spätestens bei der Übergabe vollständig zu bezahlen (bar, TWINT oder Überweisung).</li>
         <li>Das Eigentum an den Möbeln geht mit vollständiger Bezahlung auf die Käuferin oder den Käufer über.</li>
         <li>Die Möbel werden im aktuellen, gebrauchten Zustand verkauft, wie besichtigt. Jede Gewährleistung wird, soweit gesetzlich zulässig, wegbedungen.</li>
         <li>Dieser Kaufvertrag ist ein eigenständiges, freiwilliges Geschäft zwischen den Parteien. Er ist nicht Bestandteil des Mietvertrags und war keine Bedingung für die Weiterleitung der Bewerbung oder den Abschluss des Mietvertrags.</li>
         <li>Kommt der Mietvertrag zwischen der Käuferin oder dem Käufer und der Vermieterschaft nicht zustande, fällt dieser Kaufvertrag ohne Kostenfolge dahin.</li>
+        <li>Der Vertrag wird elektronisch abgeschlossen: Das Angebot des Verkäufers erfolgt über diese Seite, die Annahme durch elektronische Unterschrift der Käuferin oder des Käufers über den persönlichen Link. Beide Parteien erhalten eine PDF-Kopie per E-Mail.</li>
         <li>Es gilt Schweizer Recht.</li>
       </ol>
-      <p class="muted">Online verbindlich bestätigt am ${esc(D.confirmedAt)}.</p>
-      <div class="sig"><div>Ort, Datum, Unterschrift Verkäufer</div><div>Ort, Datum, Unterschrift Käufer/in</div></div>
+      <div class="sig">
+        <div><b>Verkäufer</b><br>${esc(VERKAEUFER.name)}<br><span class="muted">Angebot elektronisch unterbreitet</span></div>
+        <div>${o.sigImg?`<img class="sigimg" src="${o.sigImg}" alt="Unterschrift">`:""}<b>Käufer/in</b><br>${o.sigText?esc(o.sigText):'<span class="muted">noch nicht unterzeichnet</span>'}</div>
+      </div>
     </div>`;
+}
+
+function currentDeal(){
+  const s=selected();
+  return {paket:s.mode==="Alle", items:s.items, betrag:s.betrag};
+}
+
+function renderForm(){
+  const pre = (D.auswahl||"").split(", ").filter(Boolean);
+  const einzelnSum = MOEBEL.reduce((a,m)=>a+m.preis,0);
+  app.innerHTML = `
+    <p class="muted">Baslerstrasse 35, 8048 Zürich · Ref. ${esc(D.ref)}</p>
+    <h1>Möbelkauf elektronisch unterzeichnen</h1>
+    <p>Guten Tag ${esc(D.vorname)} ${esc(D.nachname)}. Wählen Sie die Möbel, prüfen Sie den Kaufvertrag und unterschreiben Sie unten direkt am Bildschirm. Sie erhalten danach eine PDF-Kopie per E-Mail.</p>
+    <h2>1. Auswahl</h2>
+    <div class="choice">
+      <label><input type="radio" name="mode" value="Alle" ${D.moebel!=="Einzelne"?"checked":""}><span><b>Alle Möbel für ${chf(PAKETPREIS)}</b><br><small class="muted">statt ${chf(einzelnSum)} einzeln</small></span></label>
+      <label><input type="radio" name="mode" value="Einzelne" ${D.moebel==="Einzelne"?"checked":""}><span><b>Nur einzelne Möbel</b></span></label>
+    </div>
+    <div class="card" id="list">${MOEBEL.map((m,i)=>`<label class="item"><input type="checkbox" name="it" value="${i}" ${pre.includes(m.name)?"checked":""}><span>${esc(m.name)}</span><span class="pr">${chf(m.preis)}</span></label>`).join("")}</div>
+    <p class="total" id="total"></p>
+    <h2>2. Vertrag prüfen</h2>
+    <div class="preview" id="preview"></div>
+    <h2>3. Unterschreiben</h2>
+    <canvas class="sigpad" id="pad" aria-label="Unterschriftsfeld"></canvas>
+    <div class="sigrow"><span>Mit Finger oder Maus unterschreiben</span><button class="linkbtn" id="clear" type="button">Löschen</button></div>
+    <label class="f">Vor- und Nachname<input type="text" id="sig" autocomplete="name" placeholder="${esc(D.vorname)} ${esc(D.nachname)}"></label>
+    <label class="check"><input type="checkbox" id="agree"><span>Ich habe den Kaufvertrag gelesen und schliesse ihn mit meiner elektronischen Unterschrift verbindlich ab.</span></label>
+    <button class="btn" id="go">Vertrag elektronisch unterzeichnen</button>
+    <p class="status" id="status" role="status"></p>`;
+  const upd=()=>{
+    const s=selected(); const list=document.getElementById("list");
+    list.style.opacity = s.mode==="Alle" ? .45 : 1; list.style.pointerEvents = s.mode==="Alle" ? "none":"auto";
+    document.getElementById("total").textContent = s.mode==="Alle" ? `Total: ${chf(PAKETPREIS)}` : (s.items.length ? `Total: ${chf(s.betrag)}` : "Bitte Möbel auswählen");
+    document.getElementById("preview").innerHTML = contractHtml(currentDeal());
+  };
+  app.addEventListener("change",upd); upd();
+  setupPad();
+  document.getElementById("go").onclick = submit;
+}
+
+let padDirty=false;
+function setupPad(){
+  const c=document.getElementById("pad"), ctx=c.getContext("2d");
+  const size=()=>{const r=c.getBoundingClientRect(),d=window.devicePixelRatio||1;c.width=r.width*d;c.height=r.height*d;ctx.setTransform(d,0,0,d,0,0);ctx.lineWidth=2.4;ctx.lineCap="round";ctx.lineJoin="round";ctx.strokeStyle="#1a2a6c";padDirty=false;};
+  size(); window.addEventListener("resize",size);
+  let draw=false,last=null;
+  const pt=e=>{const r=c.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top};};
+  c.addEventListener("pointerdown",e=>{draw=true;last=pt(e);c.setPointerCapture(e.pointerId);});
+  c.addEventListener("pointermove",e=>{if(!draw)return;const p=pt(e);ctx.beginPath();ctx.moveTo(last.x,last.y);ctx.lineTo(p.x,p.y);ctx.stroke();last=p;padDirty=true;});
+  ["pointerup","pointercancel","pointerleave"].forEach(t=>c.addEventListener(t,()=>draw=false));
+  document.getElementById("clear").onclick=()=>{ctx.clearRect(0,0,c.width,c.height);padDirty=false;};
+}
+
+function trimmedSignature(){
+  const c=document.getElementById("pad"), ctx=c.getContext("2d");
+  const {width:w,height:h}=c, data=ctx.getImageData(0,0,w,h).data;
+  let x0=w,y0=h,x1=0,y1=0;
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){if(data[(y*w+x)*4+3]>0){if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y;}}
+  if(x1<=x0||y1<=y0) return null;
+  const pad=8; x0=Math.max(0,x0-pad);y0=Math.max(0,y0-pad);x1=Math.min(w,x1+pad);y1=Math.min(h,y1+pad);
+  const out=document.createElement("canvas"), sc=Math.min(1,300/(y1-y0)); out.width=Math.round((x1-x0)*sc); out.height=Math.round((y1-y0)*sc);
+  out.getContext("2d").drawImage(c,x0,y0,x1-x0,y1-y0,0,0,out.width,out.height);
+  return out.toDataURL("image/png");
+}
+
+async function submit(){
+  const st=document.getElementById("status"), btn=document.getElementById("go"); st.className="status"; st.textContent="";
+  const deal=currentDeal(), sig=document.getElementById("sig").value.trim();
+  if(!deal.items.length){st.className="status error";st.textContent="Bitte mindestens ein Möbelstück auswählen.";return;}
+  if(!padDirty){st.className="status error";st.textContent="Bitte im Feld unterschreiben.";return;}
+  if(sig.length<4){st.className="status error";st.textContent="Bitte Vor- und Nachname eingeben.";return;}
+  if(!document.getElementById("agree").checked){st.className="status error";st.textContent="Bitte die Bestätigung ankreuzen.";return;}
+  const signatur=trimmedSignature(); if(!signatur){st.className="status error";st.textContent="Bitte im Feld unterschreiben.";return;}
+  const items = deal.paket ? "Gesamtpaket: " + MOEBEL.map(m=>m.name).join(", ") : deal.items.map(m=>m.name).join(", ");
+  btn.disabled=true; btn.textContent="Wird unterzeichnet …";
+  try{
+    const r=await fetch(API,{method:"POST",body:JSON.stringify({action:"confirm",ref:REF,k:K,items,betrag:deal.betrag,unterschrift:sig,signatur,paket:deal.paket,
+      detail:deal.items.map(m=>({name:m.name,preis:m.preis})),uebergabe:UEBERGABE,verkaeufer:VERKAEUFER})});
+    const o=await r.json(); if(!o.ok) throw new Error(o.error||"Fehler");
+    await load();
+  }catch(e){ st.className="status error"; st.textContent="Speichern fehlgeschlagen: "+e.message; btn.disabled=false; btn.textContent="Vertrag elektronisch unterzeichnen"; }
+}
+
+function renderContract(){
+  const paket = D.confirmedItems.startsWith("Gesamtpaket");
+  const names = paket ? MOEBEL.map(m=>m.name) : D.confirmedItems.split(", ");
+  const items = names.map(n=>MOEBEL.find(x=>x.name===n)||{name:n,preis:0});
+  app.innerHTML = `
+    <div class="noprint box"><b>✅ Vertrag elektronisch unterzeichnet.</b> Eine PDF-Kopie wurde Ihnen per E-Mail geschickt. Übergabe und Bezahlung bei der Schlüsselübergabe am ${UEBERGABE}.<br>
+      <button class="btn" onclick="print()">Drucken / als PDF speichern</button></div>
+    ${contractHtml({items,paket,betrag:D.betrag,sigImg:D.signatur,sigText:`Elektronisch unterzeichnet am ${D.confirmedAt}`})}`;
 }
 load();
 </script>
