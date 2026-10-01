@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Möbelkauf bestätigen – Baslerstrasse 35</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛋️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#20272B;--ink-2:#4A555C;--line:#E2DED6;--paper:#FBFAF7;--oak:#C98B4B;--oak-soft:#F3E4CF;--err:#B3261E;--ok:#2E6B3A;
+  --display:"Bricolage Grotesque","Avenir Next",system-ui,sans-serif;--body:"Figtree","Segoe UI",system-ui,sans-serif;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.55 var(--body)}
+.wrap{max-width:780px;margin:0 auto;padding:36px 20px 80px}
+h1,h2{font-family:var(--display);letter-spacing:-.02em;line-height:1.1;margin:0 0 12px}
+h1{font-size:clamp(30px,6vw,44px)} h2{font-size:22px;margin-top:28px}
+.muted{color:var(--ink-2)}
+.card{background:#fff;border:1.5px solid #CFC9BE;border-radius:14px;padding:6px 16px}
+.choice{display:grid;gap:10px;margin:14px 0}
+.choice label{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1.5px solid #CFC9BE;border-radius:12px;padding:14px 16px;cursor:pointer;font-weight:500}
+.choice label:has(input:checked){border-color:var(--ink);box-shadow:0 0 0 2px var(--ink) inset}
+.choice input{margin-top:4px;width:18px;height:18px;accent-color:var(--ink)}
+.item{display:grid;grid-template-columns:22px 1fr auto;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:0}
+.item input{width:18px;height:18px;accent-color:var(--ink)}
+.item .pr{text-align:right;white-space:nowrap}
+.total{font-family:var(--display);font-size:28px;font-weight:800;margin:18px 0 4px}
+ul.terms{padding-left:20px;margin:8px 0} ul.terms li{margin:6px 0}
+.check{display:flex;gap:12px;align-items:flex-start;margin:16px 0;font-weight:500}
+.check input{width:20px;height:20px;margin-top:3px;accent-color:var(--ink);flex:none}
+label.f{display:block;font-weight:600;font-size:15px;margin-top:10px}
+input[type=text]{width:100%;margin-top:6px;padding:13px 14px;border:1.5px solid #CFC9BE;border-radius:10px;font:400 17px var(--body)}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;border:0;border-radius:999px;padding:15px 26px;font:600 17px var(--body);cursor:pointer;margin-top:18px}
+.btn[disabled]{opacity:.6;cursor:wait}
+.btn.light{background:var(--oak-soft);color:#6B4418}
+.status{margin-top:12px} .status.error{color:var(--err)}
+.box{background:var(--oak-soft);border-radius:14px;padding:16px 18px;margin:18px 0}
+/* Vertrag */
+.contract{background:#fff;padding:40px 44px;border:1px solid var(--line);border-radius:6px;font-size:15px;line-height:1.5}
+.contract h1{font-size:28px;margin-bottom:4px}
+.contract table{width:100%;border-collapse:collapse;margin:10px 0}
+.contract td,.contract th{border-bottom:1px solid var(--line);padding:6px 4px;text-align:left;vertical-align:top}
+.contract td.r,.contract th.r{text-align:right;white-space:nowrap}
+.contract .parties{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:16px 0}
+.contract ol{padding-left:20px} .contract ol li{margin:6px 0}
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:48px}
+.sig div{border-top:1px solid var(--ink);padding-top:6px;font-size:13px}
+.noprint{}
+@media print{body{background:#fff}.wrap{padding:0;max-width:none}.noprint{display:none!important}.contract{border:0;padding:0}@page{size:A4;margin:18mm}}
+@media(max-width:560px){.contract{padding:22px 16px}.contract .parties,.sig{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"><p class="muted">Wird geladen …</p></div>
+
+<script>
+const API = "https://script.google.com/macros/s/AKfycbyrx6kprGQBMJDVTiTP29dh8FCfKLBs9HyK8uCnGDZPkr6Y59xr8Iqx8dRCE4SgtLOw/exec";
+const VERKAEUFER = { name: "Lukas Blazevic", adresse: "Baslerstrasse 35, 8048 Zürich" };
+const UEBERGABE = "31. Oktober 2026";
+/* Gleiche Liste und Preise wie auf der Hauptseite (index.html) */
+const PAKETPREIS = 5000;
+const MOEBEL = [
+  {name:"Ecksofa", neu:1124, preis:840},
+  {name:"Couchtisch", neu:299, preis:220},
+  {name:"TV-Lowboard", neu:319, preis:240},
+  {name:"Boxspringbett 180 × 200 cm", neu:999, preis:750},
+  {name:"2 Nachttische (je CHF 79)", neu:158, preis:120},
+  {name:"Kleiderschrank mit Spiegeltür", neu:1644, preis:1230},
+  {name:"Esstisch ausziehbar", neu:519, preis:390},
+  {name:"4 Polsterstühle", neu:369, preis:280},
+  {name:"Regal Seaford gross", neu:179, preis:130},
+  {name:"Regal Seaford klein", neu:139, preis:100},
+  {name:"Schuhschrank", neu:439, preis:330},
+  {name:"Sideboard", neu:379, preis:280},
+  {name:"Bürotisch", neu:150, preis:110},
+  {name:"Holzplatten Balkon", neu:349, preis:260},
+  {name:"Ecklounge Balkon", neu:400, preis:300}
+];
+const chf = n => "CHF " + Number(n).toLocaleString("de-CH").replace(/[’\u202f\u00a0 ]/g,"'");
+const esc = t => String(t??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const app = document.getElementById("app");
+const q = new URLSearchParams(location.search), REF = q.get("ref"), K = q.get("k");
+let D = null;
+
+async function load(){
+  if(!REF||!K){ app.innerHTML = `<h1>Link unvollständig</h1><p>Bitte verwenden Sie den Link, den Sie per E-Mail erhalten haben.</p>`; return; }
+  try{
+    const r = await fetch(`${API}?action=info&ref=${encodeURIComponent(REF)}&k=${encodeURIComponent(K)}`);
+    D = await r.json();
+  }catch(e){ D = {ok:false,error:"Verbindung fehlgeschlagen. Bitte später nochmals versuchen."}; }
+  if(!D.ok){ app.innerHTML = `<h1>Nicht gefunden</h1><p>${esc(D.error||"Link ungültig.")}</p>`; return; }
+  D.confirmed ? renderContract() : renderForm();
+}
+
+function selected(){
+  const mode = document.querySelector("input[name=mode]:checked")?.value;
+  if(mode==="Alle") return {mode, items:MOEBEL, betrag:PAKETPREIS};
+  const items=[...document.querySelectorAll("input[name=it]:checked")].map(c=>MOEBEL[+c.value]);
+  return {mode, items, betrag:items.reduce((a,m)=>a+m.preis,0)};
+}
+
+function renderForm(){
+  const pre = (D.auswahl||"").split(", ").filter(Boolean);
+  const einzelnSum = MOEBEL.reduce((a,m)=>a+m.preis,0);
+  app.innerHTML = `
+    <p class="muted">Baslerstrasse 35, 8048 Zürich · Ref. ${esc(D.ref)}</p>
+    <h1>Möbelkauf verbindlich bestätigen</h1>
+    <p>Guten Tag ${esc(D.vorname)} ${esc(D.nachname)}. Bitte bestätigen Sie, welche Möbel Sie übernehmen. Nach der Bestätigung erhalten Sie den Kaufvertrag zum Ausdrucken und Unterschreiben.</p>
+    <div class="choice">
+      <label><input type="radio" name="mode" value="Alle" ${D.moebel!=="Einzelne"?"checked":""}><span><b>Alle Möbel für ${chf(PAKETPREIS)}</b><br><small class="muted">statt ${chf(einzelnSum)} einzeln</small></span></label>
+      <label><input type="radio" name="mode" value="Einzelne" ${D.moebel==="Einzelne"?"checked":""}><span><b>Nur einzelne Möbel</b></span></label>
+    </div>
+    <div class="card" id="list">${MOEBEL.map((m,i)=>`<label class="item"><input type="checkbox" name="it" value="${i}" ${pre.includes(m.name)?"checked":""}><span>${esc(m.name)}</span><span class="pr">${chf(m.preis)}</span></label>`).join("")}</div>
+    <p class="total" id="total"></p>
+    <h2>Bedingungen</h2>
+    <ul class="terms">
+      <li>Übergabe und Bezahlung bei der Schlüsselübergabe am ${UEBERGABE} (bar, TWINT oder Überweisung).</li>
+      <li>Die Möbel werden im aktuellen, gebrauchten Zustand übernommen, wie besichtigt. Eine Gewährleistung ist ausgeschlossen.</li>
+      <li>Das Eigentum geht mit vollständiger Bezahlung über.</li>
+      <li>Der Kauf ist freiwillig, ein eigenständiges Geschäft zwischen Ihnen und dem Verkäufer und nicht Teil des Mietvertrags.</li>
+      <li>Kommt der Mietvertrag mit Ihnen nicht zustande, fällt dieser Kauf ohne Kostenfolge dahin.</li>
+    </ul>
+    <label class="check"><input type="checkbox" id="agree"><span>Ich bestätige verbindlich, die oben ausgewählten Möbel zu den genannten Bedingungen zu kaufen.</span></label>
+    <label class="f">Vor- und Nachname als Unterschrift<input type="text" id="sig" autocomplete="name" placeholder="${esc(D.vorname)} ${esc(D.nachname)}"></label>
+    <button class="btn" id="go">Kauf verbindlich bestätigen</button>
+    <p class="status" id="status" role="status"></p>`;
+  const upd=()=>{
+    const s=selected(); const list=document.getElementById("list");
+    list.style.opacity = s.mode==="Alle" ? .45 : 1; list.style.pointerEvents = s.mode==="Alle" ? "none":"auto";
+    document.getElementById("total").textContent = s.mode==="Alle" ? `Total: ${chf(PAKETPREIS)}` : (s.items.length ? `Total: ${chf(s.betrag)}` : "Bitte Möbel auswählen");
+  };
+  app.addEventListener("change",upd); upd();
+  document.getElementById("go").onclick = submit;
+}
+
+async function submit(){
+  const st=document.getElementById("status"), btn=document.getElementById("go"); st.className="status"; st.textContent="";
+  const s=selected(), sig=document.getElementById("sig").value.trim();
+  if(!s.items.length){st.className="status error";st.textContent="Bitte mindestens ein Möbelstück auswählen.";return;}
+  if(!document.getElementById("agree").checked){st.className="status error";st.textContent="Bitte die Bestätigung ankreuzen.";return;}
+  if(sig.length<4){st.className="status error";st.textContent="Bitte Vor- und Nachname eingeben.";return;}
+  const items = s.mode==="Alle" ? "Gesamtpaket: " + MOEBEL.map(m=>m.name).join(", ") : s.items.map(m=>m.name).join(", ");
+  btn.disabled=true; btn.textContent="Wird gespeichert …";
+  try{
+    const r=await fetch(API,{method:"POST",body:JSON.stringify({action:"confirm",ref:REF,k:K,items,betrag:s.betrag,unterschrift:sig})});
+    const o=await r.json(); if(!o.ok) throw new Error(o.error||"Fehler");
+    await load();
+  }catch(e){ st.className="status error"; st.textContent="Speichern fehlgeschlagen: "+e.message; btn.disabled=false; btn.textContent="Kauf verbindlich bestätigen"; }
+}
+
+function renderContract(){
+  const paket = D.confirmedItems.startsWith("Gesamtpaket");
+  const names = paket ? MOEBEL.map(m=>m.name) : D.confirmedItems.split(", ");
+  const rows = names.map(n=>{const m=MOEBEL.find(x=>x.name===n);return `<tr><td>${esc(n)}</td><td class="r">${paket?"":(m?chf(m.preis):"")}</td></tr>`}).join("");
+  app.innerHTML = `
+    <div class="noprint box"><b>✅ Ihr Kauf ist bestätigt.</b> Bitte drucken Sie den Vertrag aus und bringen Sie ihn unterschrieben zur Schlüsselübergabe mit. Eine Bestätigung wurde Ihnen auch per E-Mail geschickt.<br>
+      <button class="btn" onclick="print()">Vertrag drucken / als PDF speichern</button></div>
+    <div class="contract">
+      <h1>Kaufvertrag über Möbel</h1>
+      <p class="muted">Wohnung Baslerstrasse 35, 8048 Zürich · Ref. ${esc(D.ref)}</p>
+      <div class="parties">
+        <div><b>Verkäufer</b><br>${esc(VERKAEUFER.name)}<br>${esc(VERKAEUFER.adresse)}</div>
+        <div><b>Käufer/in</b><br>${esc(D.vorname)} ${esc(D.nachname)}<br>${esc(D.adresse)}<br>${D.geburtsdatum?"geb. "+esc(D.geburtsdatum)+"<br>":""}${esc(D.telefon)} · ${esc(D.email)}</div>
+      </div>
+      <h2>1. Kaufgegenstand</h2>
+      <table><thead><tr><th>Möbelstück</th><th class="r">${paket?"":"Preis"}</th></tr></thead><tbody>${rows}</tbody>
+      <tfoot><tr><th>${paket?"Kaufpreis Gesamtpaket":"Kaufpreis total"}</th><th class="r">${chf(D.betrag)}</th></tr></tfoot></table>
+      <h2>2. Bestimmungen</h2>
+      <ol>
+        <li>Die Möbel werden am ${UEBERGABE} bei der Schlüsselübergabe in der Wohnung übergeben. Der Kaufpreis ist bei der Übergabe vollständig zu bezahlen (bar, TWINT oder Überweisung).</li>
+        <li>Das Eigentum an den Möbeln geht mit vollständiger Bezahlung auf die Käuferin oder den Käufer über.</li>
+        <li>Die Möbel werden im aktuellen, gebrauchten Zustand verkauft, wie besichtigt. Jede Gewährleistung wird, soweit gesetzlich zulässig, wegbedungen.</li>
+        <li>Dieser Kaufvertrag ist ein eigenständiges, freiwilliges Geschäft zwischen den Parteien. Er ist nicht Bestandteil des Mietvertrags und war keine Bedingung für die Weiterleitung der Bewerbung oder den Abschluss des Mietvertrags.</li>
+        <li>Kommt der Mietvertrag zwischen der Käuferin oder dem Käufer und der Vermieterschaft nicht zustande, fällt dieser Kaufvertrag ohne Kostenfolge dahin.</li>
+        <li>Es gilt Schweizer Recht.</li>
+      </ol>
+      <p class="muted">Online verbindlich bestätigt am ${esc(D.confirmedAt)}.</p>
+      <div class="sig"><div>Ort, Datum, Unterschrift Verkäufer</div><div>Ort, Datum, Unterschrift Käufer/in</div></div>
+    </div>`;
+}
+load();
+</script>
+</body>
+</html>
