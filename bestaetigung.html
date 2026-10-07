@@ -66,6 +66,7 @@ input[type=text]{width:100%;margin-top:6px;padding:13px 14px;border:1.5px solid 
 const API = "https://script.google.com/macros/s/AKfycbyrx6kprGQBMJDVTiTP29dh8FCfKLBs9HyK8uCnGDZPkr6Y59xr8Iqx8dRCE4SgtLOw/exec";
 const VERKAEUFER = { name: "Lukas Blazevic", adresse: "Baslerstrasse 35, 8048 Zürich" };
 const UEBERGABE = "1. November 2026";
+const VERKAEUFER_SIG = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQUAAACCAQMAAAB1mk8GAAAABlBMVEX///8aKmxvHBSDAAAAAXRSTlMAQObYZgAAA9FJREFUeNrt1z/LK8cVBvDfzCpzF1tcbWFfNnBxVJhwixRbhODCxFuFlCldLqRJ6XS3MMmmy8fwN8mYtC5SpM9CGjcGYQcsjCyl2D+SXr+ywFxcmDuFGHYenTlz5jnPOcMPG/XFPD6K+Nrr8Xq8Hq98lD/Rc61uL8XvE5rLpeNdRHkXcbiLcBdR3UXsX8Eu27uI3SvYpb2LGO6ayvOk+OF+ZCh2nG4gAnj/e/wNUAwN6YaNCM+3zU0Tmy/hZcg3CfvX36LIxU1Kh7zGRsL6UcQTa7xnfZOwz60xqB/U4vNZ3oLiEx/eJNvgHdIY2OYxG+ETe54J+VY0Cn7DR+O1bvngO3eT+KWQx4B3wj483OUZrdh6Nvr0tMQHV6CG33k6OZm9FIRTf2mjgTcmvufwe8RwtUtH70N+cRoEscWbV36ETPaH5NNY0xdEb1x72gtCTpzeEscT1eFBOEIq1Fgp1CRd6K/DUaSkQhI1JPnK08RJmnJ7pSGFHK3P91ySUq1BspIpg+T9GRFVHNVT9pcyVXT0YmZCVFMu6nAIqAulP82iEu04LLlfnXqaZB0+O3vaUh2HS30YDvbx5cymqGOvn5S5hr5SFduzjTxuOFwkR61NO7oREbCb9GP0OPY73eFsI/ajRvVmjwttyFU/8zaeMJSzMg9Iutj/PF9ei7zu9Whk1Prkj4tgxSMhH0YFGf2pg+S/S5LHcvIB2jDytl/7y1mw1hTKPowkhVxo/J2nk40DJ1UfIY+/J02orhrvpFYg9NHm9DdJLhresdSetUpEIdmcTlahLzp+PUlgRTkhkoRNXhdS5t0REVHZWiE54tvWm0I+V4OKRmOF2hq1srbBZ2cbu4liewfUqtrpXA0iWq0SWxUa+0Y1K/mI6BYR2KOz7Rzx8VmlssFhXEP2Vev5ua7E6VoqEx8CBfuLWlQpyGoKthR8TMeqnM6yHcHjn1oK/kdPWUEvLkoqMZCEjxjOCh+n6Xb+tJYGYVbnE5FaYEdNT+1nvbgU+nZRulETMzvvUuT5cy8Oo9KNYotW03uC4fNx9ziFoZ3TozOw7mfy/ovqCYFWQSD0ZH8eJyMF6+dTJBLFGMnsn0tINzl+/e9zap2mhfCPBfHlIpjZe6QxKN0mXpTEc2fwgm/Ghf98sXoEkYtueZV+ujpeFLzFxrftdUO0fYBYNLidNba5QlwUtm5uE7srxHFJ/5Anit8snMUYy/KRfmgxWYx+pFud0mpEVLcRx3lpfbvb+tXD9/x3EC8Wwt3o24s8Wsi3WvliKvq3+4hZ3J7c7QvfvtctbnY/9sPl/47j0eDZi82QAAAAAElFTkSuQmCC";
 /* Gleiche Liste und Preise wie auf der Hauptseite (index.html) */
 const PAKETPREIS = 5000;
 const MOEBEL = [
@@ -132,7 +133,7 @@ function contractHtml(o){
         <li>Es gilt Schweizer Recht.</li>
       </ol>
       <div class="sig">
-        <div><b>Verkäufer</b><br>${esc(VERKAEUFER.name)}<br><span class="muted">Angebot elektronisch unterbreitet</span></div>
+        <div><img class="sigimg" src="${VERKAEUFER_SIG}" alt="Unterschrift Verkäufer"><b>Verkäufer</b><br>${esc(VERKAEUFER.name)}<br><span class="muted">Elektronisch unterzeichnet</span></div>
         <div>${o.sigImg?`<img class="sigimg" src="${o.sigImg}" alt="Unterschrift">`:""}<b>Käufer/in</b><br>${o.sigText?esc(o.sigText):'<span class="muted">noch nicht unterzeichnet</span>'}</div>
       </div>
     </div>`;
