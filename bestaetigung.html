@@ -153,7 +153,7 @@ function renderForm(){
     <p>Guten Tag ${esc(D.vorname)} ${esc(D.nachname)}. Prüfen Sie die Möbelliste und den Kaufvertrag und unterschreiben Sie unten direkt am Bildschirm. Sie erhalten danach eine PDF-Kopie per E-Mail.</p>
     <h2>1. Möbel</h2>
     <p>Der Kauf umfasst sämtliche folgenden Möbel als Gesamtpaket:</p>
-    <div class="card" id="list">${MOEBEL.map(m=>`<div class="item"><span>${esc(m.name)}</span></div>`).join("")}</div>
+    <div class="card" id="list">${MOEBEL.map(m=>`<div style="padding:10px 4px;border-bottom:1px solid var(--line)">${esc(m.name)}</div>`).join("")}</div>
     <p class="total" id="total">Gesamtpreis: ${chf(PAKETPREIS)}</p>
     <h2>2. Vertrag prüfen</h2>
     <div class="preview" id="preview"></div>
