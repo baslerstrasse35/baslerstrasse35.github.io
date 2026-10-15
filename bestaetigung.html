@@ -103,8 +103,8 @@ async function load(){
 }
 
 function selected(){
-  const mode = document.querySelector("input[name=mode]:checked")?.value;
-  if(mode==="Alle") return {mode, items:MOEBEL, betrag:PAKETPREIS};
+  const mode = "Alle";
+  return {mode, items:MOEBEL, betrag:PAKETPREIS};
   const items=[...document.querySelectorAll("input[name=it]:checked")].map(c=>MOEBEL[+c.value]);
   return {mode, items, betrag:items.reduce((a,m)=>a+m.preis,0)};
 }
@@ -150,14 +150,11 @@ function renderForm(){
   app.innerHTML = `
     <p class="muted">Baslerstrasse 35, 8048 Zürich · Ref. ${esc(D.ref)}</p>
     <h1>Möbelkauf elektronisch unterzeichnen</h1>
-    <p>Guten Tag ${esc(D.vorname)} ${esc(D.nachname)}. Wählen Sie die Möbel, prüfen Sie den Kaufvertrag und unterschreiben Sie unten direkt am Bildschirm. Sie erhalten danach eine PDF-Kopie per E-Mail.</p>
-    <h2>1. Auswahl</h2>
-    <div class="choice">
-      <label><input type="radio" name="mode" value="Alle" ${D.moebel!=="Einzelne"?"checked":""}><span><b>Alle Möbel für ${chf(PAKETPREIS)}</b><br><small class="muted">statt ${chf(einzelnSum)} einzeln</small></span></label>
-      <label><input type="radio" name="mode" value="Einzelne" ${D.moebel==="Einzelne"?"checked":""}><span><b>Nur einzelne Möbel</b></span></label>
-    </div>
-    <div class="card" id="list">${MOEBEL.map((m,i)=>`<label class="item"><input type="checkbox" name="it" value="${i}" ${pre.includes(m.name)?"checked":""}><span>${esc(m.name)}</span><span class="pr">${chf(m.preis)}</span></label>`).join("")}</div>
-    <p class="total" id="total"></p>
+    <p>Guten Tag ${esc(D.vorname)} ${esc(D.nachname)}. Prüfen Sie die Möbelliste und den Kaufvertrag und unterschreiben Sie unten direkt am Bildschirm. Sie erhalten danach eine PDF-Kopie per E-Mail.</p>
+    <h2>1. Möbel</h2>
+    <p>Der Kauf umfasst sämtliche folgenden Möbel als Gesamtpaket:</p>
+    <div class="card" id="list">${MOEBEL.map(m=>`<div class="item"><span>${esc(m.name)}</span></div>`).join("")}</div>
+    <p class="total" id="total">Gesamtpreis: ${chf(PAKETPREIS)}</p>
     <h2>2. Vertrag prüfen</h2>
     <div class="preview" id="preview"></div>
     <h2>3. Unterschreiben</h2>
@@ -168,9 +165,6 @@ function renderForm(){
     <button class="btn" id="go">Vertrag elektronisch unterzeichnen</button>
     <p class="status" id="status" role="status"></p>`;
   const upd=()=>{
-    const s=selected(); const list=document.getElementById("list");
-    list.style.opacity = s.mode==="Alle" ? .45 : 1; list.style.pointerEvents = s.mode==="Alle" ? "none":"auto";
-    document.getElementById("total").textContent = s.mode==="Alle" ? `Total: ${chf(PAKETPREIS)}` : (s.items.length ? `Total: ${chf(s.betrag)}` : "Bitte Möbel auswählen");
     document.getElementById("preview").innerHTML = contractHtml(currentDeal());
   };
   app.addEventListener("change",upd); upd();
